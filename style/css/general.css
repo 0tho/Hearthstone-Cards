@@ -1,0 +1,25 @@
+/* 
+    Document   : general
+    Created on : 02/03/2014, 02:14:42
+    Author     : Marcelo
+    Description:
+        This stylesheet has the purpouse of styling anything that is not speficic to only one part of the web app.
+*/
+
+/* Hearthstone text font */
+@font-face
+{
+    font-family: "Belwe Bd BT";
+    src: url("../fonts/Belwe_Bd_BT.ttf");
+}
+
+*{
+    margin: 0px;
+    font-family: "Belwe Bd BT";
+    color: white;
+    text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+}
+body, html
+{
+   overflow: hidden; 
+}
