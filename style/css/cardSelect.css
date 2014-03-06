@@ -38,6 +38,9 @@ body, html{
     
     
     background-color: green;
+   
+    overflow-y: scroll;
+
 }
 
 .card_thumbail

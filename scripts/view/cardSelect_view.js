@@ -1,4 +1,4 @@
-define(['jquery', 'text!../html/cardSelect.html', 'text!../html/cardLayout.html', 'data'], function($, html, cardLayout, data)
+define(['jquery', 'text!../html/cardSelect.html', 'text!../html/cardLayout.html', 'text!../html/cardThumbnailLayout.html', 'data'], function($, html, cardLayout, cardThumbnailLayout, data)
 {    
     function insertCardsDivsIntoHTML()
     {
@@ -20,6 +20,20 @@ define(['jquery', 'text!../html/cardSelect.html', 'text!../html/cardLayout.html'
             newCard.css('background-image', 'url("./style/imgs/cards/'+card.image+'.png")');           
         }
     }
+    
+    function insertThumbnailIntoHTML(card, index)
+    {           
+        var newCardThumbnailContainer = $(cardThumbnailLayout);
+        $('#selectedCards').append(newCardThumbnailContainer);
+        
+        index = $('.cardThumbnailContainer').length-1;       
+        
+        $($('.cardThumbnail_mana')[index]).text(card.mana);
+        $($('.cardThumbnail_img')[index]).text(card.img);
+        $($('.cardThumbnail_name')[index]).text(card.name);
+        $($('.cardThumbnail_quantity')[index]).text(1);
+    }
+    
     return {
         html: html,       
        
@@ -35,6 +49,7 @@ define(['jquery', 'text!../html/cardSelect.html', 'text!../html/cardLayout.html'
         {
             $('#done_button').click(_function);
         },
+        addThumbnail: insertThumbnailIntoHTML,
                  
         
         init: insertCardsDivsIntoHTML

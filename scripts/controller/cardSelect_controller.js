@@ -13,17 +13,24 @@ define(['general_view', 'cardSelect_view', 'data', 'require'], function(general,
         {
             var card = $(this);
             var id = card.data('id');
+            
+            var cardObj = cards[id];
                         
-            //Add card thumbnail
-            //
+            
+            
             //Add card on mainController deck var
             
             var mainController = require('mainController');
-            var adicionou = mainController.selectCard(cards[id]);
+            var adicionou = mainController.selectCard(cardObj);
             console.log(mainController.selectedCards);
             
             //if deck has 30 cards allow to click on done button
-            if(!adicionou)
+            if(adicionou)
+            {
+                //Add card thumbnail
+                cardSelect.addThumbnail(cardObj, 0);
+            }
+            else
             {
                 deckDone = true;
             }
