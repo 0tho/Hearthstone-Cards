@@ -15,8 +15,7 @@ define(['jquery', 'text!../html/classes.html', 'text!../html/classLayout.html', 
     }
     
     return {
-        html: html ,
-        classesArea: $('#classesArea'),
+        html: html ,        
         init: insertClassesDivsIntoHtml,
         
         

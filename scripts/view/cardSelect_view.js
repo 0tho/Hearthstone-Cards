@@ -22,18 +22,7 @@ define(['jquery', 'text!../html/cardSelect.html', 'text!../html/cardLayout.html'
     }
     return {
         html: html,       
-        cardsArea: $('#cardsArea'),
-        filtersArea: $('#filtersArea'),
-        costOfMana: $('#costOfMana'),
-        searchBar: $('#searchBar'),
-        rightCol: $('#rightCol'),
-        selectedCards: $('#selectedCards'),
-        buttons: $('#buttons'),
-        
-        back_button: $('#back_button'),
-        done_button: $('#done_button'), 
-        
-        cards: $('.card_img'),
+       
         cardsClick: function(_function)
         {            
             $('.card_img').click(_function);
