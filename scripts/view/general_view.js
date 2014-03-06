@@ -8,6 +8,7 @@ define(['jquery'], function($) {
        reset: function()
        {
            $('body').empty();         
-       }
+       },
+       body: $('body')
    };
 });

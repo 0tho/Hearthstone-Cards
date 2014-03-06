@@ -27,6 +27,15 @@ define(['jquery', 'text!../html/cardSelect.html', 'text!../html/cardLayout.html'
         {            
             $('.card_img').click(_function);
         },
+        backClick: function(_function)
+        {
+            $('#back_button').click(_function);
+        },
+        doneClick: function(_function)
+        {
+            $('#done_button').click(_function);
+        },
+                 
         
         init: insertCardsDivsIntoHTML
     };
