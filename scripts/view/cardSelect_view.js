@@ -10,16 +10,14 @@ define(['jquery', 'text!../html/cardSelect.html', 'text!../html/cardLayout.html'
             var newContainer = $(cardLayout);
             $('#cardsArea').append(newContainer);
             
-            var newCard = $($('.card_img')[i]);
-            newCard.addClass(card.rarity);
-            newCard.addClass(card.class);
-            newCard.addClass(card.race+"_race");
-            newCard.addClass(card.mana+"_mana");
+            var newCard = $($('.card_img')[i]);         
             newCard.attr("id", card.name);          
             newCard.attr("data-id", i);
-            newCard.css('background-image', 'url("./style/imgs/cards/'+card.image+'.png")');
-            
-            
+            newCard.attr("data-mana", card.mana);
+            newCard.attr("data-race", card.race);
+            newCard.attr("data-rarity", card.rarity);
+            newCard.attr("data-class", card.class);
+            newCard.css('background-image', 'url("./style/imgs/cards/'+card.image+'.png")');           
         }
     }
     return {
@@ -31,8 +29,15 @@ define(['jquery', 'text!../html/cardSelect.html', 'text!../html/cardLayout.html'
         rightCol: $('#rightCol'),
         selectedCards: $('#selectedCards'),
         buttons: $('#buttons'),
+        
         back_button: $('#back_button'),
-        done_button: $('#done_button'),   
+        done_button: $('#done_button'), 
+        
+        cards: $('.card_img'),
+        cardsClick: function(_function)
+        {            
+            $('.card_img').click(_function);
+        },
         
         init: insertCardsDivsIntoHTML
     };

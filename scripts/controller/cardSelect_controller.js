@@ -3,7 +3,14 @@ define(['general_view', 'cardSelect_view', 'require'], function(general, cardSel
    function insertDivsIntoHTML()
    {
       general.body.append(cardSelect.html);
-      cardSelect.init();
+      cardSelect.init();      
+    
+      cardSelect.cardsClick(function()
+      {
+          var card = $(this);
+          
+         
+      });
    }
     
    return {
