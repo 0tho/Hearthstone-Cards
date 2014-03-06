@@ -1,15 +1,16 @@
-define(['jquery', 'text!../html/classes.html', 'data'], function($, html, data)
+define(['jquery', 'text!../html/classes.html', 'text!../html/classLayout.html', 'data'], function($, html, classLayout, data)
 {    
     function insertClassesDivsIntoHtml()
     {
         var classes = data.hearth_classes;
         for(i=0;i<classes.length;i++)
-        {
-            console.log(classes[i].name);
-            var newContainer = $('<div class="class_container">');            
-            var newClass = $('<div id="'+classes[i].class+'" class="'+classes[i].class+'_img class_img" >');
-            newContainer.append(newClass);
-            $('#classesArea').append(newContainer);           
+        {            
+            var newContainer = $(classLayout);
+            $('#classesArea').append(newContainer);            
+          
+            $($(".class_img")[i])
+            .addClass(classes[i].class+'_img')
+            .attr("id", classes[i].class);
         }
     }
     

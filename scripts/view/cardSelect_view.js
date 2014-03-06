@@ -1,4 +1,4 @@
-define(['jquery', 'text!../html/cardSelect.html', 'data'], function($, html, data)
+define(['jquery', 'text!../html/cardSelect.html', 'text!../html/cardLayout.html', 'data'], function($, html, cardLayout, data)
 {    
     function insertCardsDivsIntoHTML()
     {
@@ -6,18 +6,20 @@ define(['jquery', 'text!../html/cardSelect.html', 'data'], function($, html, dat
         for(i=0;i<cards.length;i++)
         {
             var card = cards[i];
-            console.log(card);
-            var newContainer = $('<div class="card_container">');
-            var newCard = $('<div id="'+card.name+'">');
-            newCard.addClass('card_img');
+            
+            var newContainer = $(cardLayout);
+            $('#cardsArea').append(newContainer);
+            
+            var newCard = $($('.card_img')[i]);
             newCard.addClass(card.rarity);
             newCard.addClass(card.class);
             newCard.addClass(card.race+"_race");
             newCard.addClass(card.mana+"_mana");
+            newCard.attr("id", card.name);          
+            newCard.attr("data-id", i);
             newCard.css('background-image', 'url("./style/imgs/cards/'+card.image+'.png")');
             
-            newContainer.append(newCard);
-            $('#cardsArea').append(newContainer);
+            
         }
     }
     return {
