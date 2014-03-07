@@ -8,6 +8,7 @@ define(['jquery', 'text!../html/cardSelect.html', 'text!../html/cardLayout.html'
             var card = cards[i];
             
             var newContainer = $(cardLayout);
+            var cardsContainer = $($('.card_container')[i]);
             $('#cardsArea').append(newContainer);
             
             var newCard = $($('.card_img')[i]);         
@@ -19,19 +20,56 @@ define(['jquery', 'text!../html/cardSelect.html', 'text!../html/cardLayout.html'
             newCard.attr("data-class", card.class);
             newCard.css('background-image', 'url("./style/imgs/cards/'+card.image+'.png")');           
         }
+        
+        
     }
     
-    function insertThumbnailIntoHTML(card, index)
+    function insertThumbnailIntoHTML(card, refIndex, refCard)
     {           
         var newCardThumbnailContainer = $(cardThumbnailLayout);
-        $('#selectedCards').append(newCardThumbnailContainer);
+        var index;
+        var cardContainer;
+        if(refIndex === -1)
+        {
+            console.log("insert", "first");
+            $('#selectedCards').prepend(newCardThumbnailContainer);
+            index = 0;
+            cardContainer = $($('.cardThumbnailContainer')[index]);
+        }else if(refIndex >= 0)
+        {
+            console.log("insert", "after");
+            console.log(newCardThumbnailContainer);
+            $('.cardThumbnailContainer[data-name="'+refCard.name+'"]').after(newCardThumbnailContainer);
+           
+           cardContainer = $('.cardThumbnailContainer[data-name="'+refCard.name+'"] + .cardThumbnailContainer');
+        }else
+        {
+            console.log("insert", "last");
+            $('#selectedCards').append(newCardThumbnailContainer);  
+            index = $('.cardThumbnailContainer').length-1;  
+            cardContainer = $($('.cardThumbnailContainer')[index]);            
+        }
         
-        index = $('.cardThumbnailContainer').length-1;       
         
-        $($('.cardThumbnail_mana')[index]).text(card.mana);
-        $($('.cardThumbnail_img')[index]).text(card.img);
-        $($('.cardThumbnail_name')[index]).text(card.name);
-        $($('.cardThumbnail_quantity')[index]).text(1);
+        
+        console.log(card);
+        cardContainer.attr('data-name', card.name);
+       
+        $('.cardThumbnail_mana', cardContainer).text(card.mana);
+        $('.cardThumbnail_img', cardContainer).text(card.img);
+        $('.cardThumbnail_name', cardContainer).text(card.name);
+        $('.cardThumbnail_quantity', cardContainer).text(1);
+    }
+    
+    function removeThumbnailFromHTML(card)
+    {        
+         $('.cardThumbnailContainer[data-name="'+card.name+'"]').remove();
+    }
+    
+    function updateCardQuantity(card, quantity)
+    {
+        console.log($('.cardThumbnail_quantity', $('[data-name="'+card.name+'"]')[0]).text());
+        $('.cardThumbnail_quantity', $('[data-name="'+card.name+'"]')[0]).text(quantity);
     }
     
     return {
@@ -40,6 +78,14 @@ define(['jquery', 'text!../html/cardSelect.html', 'text!../html/cardLayout.html'
         cardsClick: function(_function)
         {            
             $('.card_img').click(_function);
+        },
+        thumbnailsClick:function(_function)
+        {
+            $('.cardThumbnailContainer').click(_function);
+        },
+        thumbnailsUnbind: function()
+        {
+            $('.cardThumbnailContainer').unbind();
         },
         backClick: function(_function)
         {
@@ -50,7 +96,8 @@ define(['jquery', 'text!../html/cardSelect.html', 'text!../html/cardLayout.html'
             $('#done_button').click(_function);
         },
         addThumbnail: insertThumbnailIntoHTML,
-                 
+        removeThumbnail: removeThumbnailFromHTML,
+        updateCardQuantity: updateCardQuantity,      
         
         init: insertCardsDivsIntoHTML
     };

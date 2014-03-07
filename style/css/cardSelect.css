@@ -11,7 +11,31 @@ body, html{
     background-color: red;
 }
 
-#cardAsrea_container
+#left_button
+{
+    width: 100px;
+    height: 100%;
+    position: absolute;
+    
+    cursor: pointer;
+    background-color: yellow;
+    top: 0px;
+    left: 0px;   
+}
+#right_button
+{
+    width: 100px;
+    height: 100%;
+    position: absolute;
+    
+    cursor: pointer;
+    background-color: yellow;
+    top: 0px;
+    right: 0px;
+}
+
+
+#cardsArea_container
 {
     height: 400px;
     top:    80px;
@@ -19,14 +43,16 @@ body, html{
     background-color: gray;
     overflow: hidden;
 }
+
 #cardsArea
 {
     width: 100%;
     height: 400px;
     left: 15px;
-    top:    -200px;
-    position: relative;
-    
+    top:    0px;
+    position: relative; 
+    z-index: 1;
+    pointer-events: none;
 }
 
 #rightCol
@@ -57,11 +83,18 @@ body, html{
     height: 200px;
     display: block;
     float: left;
+    
 }
 .card_img
 {
-    width: 150px;
-    height: 200px;
+    pointer-events: all;
+    width: 100px;
+    height: 100px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    margin-left: 25px;
+    margin-right: 25px;
+    
     background-size:contain;
     background-repeat:no-repeat;
     background-position:center;    

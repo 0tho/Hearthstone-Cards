@@ -22,11 +22,9 @@ define(['general_view', 'classes_controller', 'cardSelect_controller', 'cardCont
         //classes - Choose a class
         if(oldState === "classes" && newState === "cardSelect")
         {
-            selectedClass = arg;
-            console.log(selectedClass);
+            selectedClass = arg;           
             general.reset();
-            cardSelect.init();
-            
+            cardSelect.init();           
         }
         
         //cardSelect - Back
@@ -58,6 +56,9 @@ define(['general_view', 'classes_controller', 'cardSelect_controller', 'cardCont
         if(selectedCards.length < 30)
         {
             selectedCards.push(card);
+            console.log("before sort", selectedCards);
+            selectedCards.sort(orderByManaName);
+            console.log("after sort", selectedCards);
             return true;
         }
         else
@@ -66,11 +67,36 @@ define(['general_view', 'classes_controller', 'cardSelect_controller', 'cardCont
         }
     }
     
+    function orderByManaName(a, b)
+    {
+        if(a.mana < b.mana)
+        {
+            return -1;
+        }else if(b.mana < a.mana)
+        {
+            return 1;
+        }else
+        {
+            if(a.name < b.name)
+            {
+                return -1;
+            }else if(b.name < a.name)
+            {
+                return 1;
+            }else
+            {
+                return 0;
+            }
+        }
+    }
+        
     function removeCard(card)
     {
         var cardIndex = findCardByName(card, selectedCards);
         
-        if(cardIndex)
+        console.log( cardIndex, 'cardIndex');
+        console.log(cardIndex === false);
+        if(cardIndex !== false)
         {
             selectedCards.splice(cardIndex, 1);
             
@@ -84,9 +110,10 @@ define(['general_view', 'classes_controller', 'cardSelect_controller', 'cardCont
     function findCardByName(card, array)
     {
         var i = 0;
+        
         while(card.name !== array[i].name && ++i< array.length);
        
-        
+       
         if(i === array.length)
         {
             return false;
@@ -100,7 +127,8 @@ define(['general_view', 'classes_controller', 'cardSelect_controller', 'cardCont
         changeState: changeState,
         selectCard: selectCard,
         removeCard: removeCard,
-        selectedCards: selectedCards
+        selectedCards: selectedCards,
+        findCardByName: findCardByName
     };
 });
 
