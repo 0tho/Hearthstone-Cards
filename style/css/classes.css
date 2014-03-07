@@ -1,6 +1,6 @@
 #classesArea {
     width: 789px;
-    background-color: url('../imgs/classes/classesBackground.png');
+    background-image: url('../imgs/classes/classesBackground.png');
     overflow: auto;
 }
 
