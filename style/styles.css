@@ -1,6 +1,7 @@
 /*
-    Main CSS file to be imported into html. This file makes reference to all other css files
+    Main CSS file to be imported into html. This file makes reference to all other css files including Normalize.css
 */
+@import "css/normalize.css";
 @import "css/general.css";
 
 @import "css/classes.css";

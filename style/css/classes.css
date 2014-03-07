@@ -1,7 +1,13 @@
+#classesArea {
+    width: 789px;
+    background-color: url('../imgs/classes/classesBackground.png');
+    overflow: auto;
+}
+
 .class_container
 {
     width: 263px;
-    height: 200px;
+    height: 205px;
     display: block;
     float: left;
 }
