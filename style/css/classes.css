@@ -1,25 +1,38 @@
-#classesArea {
-    width: 789px;
+#classesContainer {
+    width: 1024px;
+    height: 640px;
     background-image: url('../imgs/classes/classesBackground.png');
+    background-size: contain;
     overflow: auto;
+}
+
+#classesArea {
+    width: 500px;
+    position: relative;
+    left: 155px;
+    top: 82px;
 }
 
 .class_container
 {
-    width: 263px;
-    height: 205px;
+    width: 153.6px;
+    height: 96px;
     display: block;
     float: left;
+    margin-left: -11px;
+    margin-top: 40px
 }
+
+
 .class_img
 {
-    width: 263px;
-    height: 200px;
+    width: 153.6px;
+    height: 96px;
     background-size:contain;
     background-repeat:no-repeat;
     background-position:center;
-    
 }
+
 .class_img:hover
 {
     -webkit-transform: scale(1.03);

@@ -27,10 +27,16 @@
     /* Rules below not implemented in browsers yet */
     -o-user-select: none;
     user-select: none;
+    
+    /*Change box-model*/
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
 }
+
 body, html
 {
-   overflow: hidden; 
+   overflow: hidden;
 }
 
 .clear {
