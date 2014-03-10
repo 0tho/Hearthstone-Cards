@@ -37,6 +37,8 @@
 body, html
 {
    overflow: hidden;
+   background: #181208;
+   color: #fff;
 }
 
 .clear {
