@@ -9,6 +9,10 @@ define(['jquery'], function($) {
        {
            $('body').empty();         
        },
-       body: $('body')
+       body: $('body'),
+       resize: function(_function)
+       {
+            $(window).resize(_function);
+       }
    };
 });

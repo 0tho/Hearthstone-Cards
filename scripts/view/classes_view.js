@@ -12,6 +12,7 @@ define(['jquery', 'text!../html/classes.html', 'text!../html/classLayout.html', 
             .addClass(classes[i].class+'_img')
             .attr("id", classes[i].class);
         }
+        $('#classesArea').append($('<div class="clear">'));
     }
     
     return {

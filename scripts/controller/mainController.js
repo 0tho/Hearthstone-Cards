@@ -6,13 +6,22 @@ define(['general_view', 'classes_controller', 'cardSelect_controller', 'cardCont
     var selectedCards = [];
     var selectedClass = "";
     
+    var size = [1024+26, 768+69]; 
     general.ready(function()
     {        
-        window.resizeTo(1024+26, 768+69);
+        window.resizeTo(size[0], size[1]);
+        general.resize(youShallNotResize);
         //cardSelect.init(); 
         //Change after tests
         classes.init();        
     });
+    
+    
+    function youShallNotResize()
+    {
+       window.resizeTo(size[0], size[1]);
+    }
+    
     
     function changeState(newState, arg)
     {
