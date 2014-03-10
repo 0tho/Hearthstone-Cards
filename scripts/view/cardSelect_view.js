@@ -1,5 +1,9 @@
 define(['jquery', 'text!../html/cardSelect.html', 'text!../html/cardLayout.html', 'text!../html/cardThumbnailLayout.html', 'data'], function($, html, cardLayout, cardThumbnailLayout, data)
 {    
+    var turnPageY = 400;
+    var pageNumber = 0;
+    var cardsPerPage = 8;
+    
     function insertCardsDivsIntoHTML()
     {
         var cards = data.hearth_cards;
@@ -8,7 +12,9 @@ define(['jquery', 'text!../html/cardSelect.html', 'text!../html/cardLayout.html'
             var card = cards[i];
             
             var newContainer = $(cardLayout);
+            
             var cardsContainer = $($('.card_container')[i]);
+            
             $('#cardsArea').append(newContainer);
             
             var newCard = $($('.card_img')[i]);         
@@ -95,9 +101,47 @@ define(['jquery', 'text!../html/cardSelect.html', 'text!../html/cardLayout.html'
         {
             $('#done_button').click(_function);
         },
+        turnLeftClick: function(_function)
+        {
+            $('#turnLeft_button').click(_function);
+        },
+        turnLeftRight: function(_function)
+        {
+            $('#turnRight_button').click(_function);
+        },
+        turnLeft: function(limit)
+        {
+            console.log("left");
+            if(pageNumber > 0)
+            {
+                var top = parseInt($('#cardsArea').css('top'));
+                $('#cardsArea').css('top', top + turnPageY +"px");
+                pageNumber--;
+            }
+        },
+        turnRight: function(limit)
+        {
+            var top = parseInt($('#cardsArea').css('top'));
+            var numberOfVisibleCards = $(".card_container:visible").length;
+            if(pageNumber < Math.ceil(numberOfVisibleCards/cardsPerPage)-1)
+            {
+                console.log(top);
+                $('#cardsArea').css('top', top - turnPageY +"px");
+                pageNumber++;
+            }
+        },
+        aplyFilters: function (class_selector, mana_selector, text_selector, rarity_selector)
+        {
+            pageNumber = 0;
+            $('#cardsArea').css('top', "0px");
+                
+            $('.card_container').show();
+            console.log(class_selector);
+            $('.card_img[data-class!="'+class_selector+'"]').parent().hide();
+        },         
         addThumbnail: insertThumbnailIntoHTML,
         removeThumbnail: removeThumbnailFromHTML,
-        updateCardQuantity: updateCardQuantity,      
+        updateCardQuantity: updateCardQuantity,
         
         init: insertCardsDivsIntoHTML
     };

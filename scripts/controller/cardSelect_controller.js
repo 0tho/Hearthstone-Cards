@@ -1,6 +1,21 @@
 define(['general_view', 'cardSelect_view', 'data', 'require'], function(general, cardSelect, data, require)
 {        
     var deckDone = false;
+    var classFilter = true;
+    //-1 = all mana costs
+    var manaFilter = -1;
+    var textFilter = "";
+    var rarityFilter = "";
+    
+    function applyFilters()
+    {
+        var mainController = require('mainController');  
+        
+        var class_selected = mainController.selectedClass();       
+        
+        var class_selector = (classFilter) ? class_selected : "Any";
+        cardSelect.aplyFilters(class_selector, manaFilter, textFilter, rarityFilter);
+    }
     
     function insertDivsIntoHTML()
     {    
@@ -21,8 +36,9 @@ define(['general_view', 'cardSelect_view', 'data', 'require'], function(general,
             //Add card on mainController deck var
             
             var mainController = require('mainController');
+            
             var adicionou = mainController.selectCard(cardObj);
-            //console.log(mainController.selectedCards);
+            
             
             //if deck has 30 cards allow to click on done button
             if(adicionou)
@@ -56,6 +72,8 @@ define(['general_view', 'cardSelect_view', 'data', 'require'], function(general,
             {
                 deckDone = true;
             }
+            
+            
         });
         
         function thumbnailsClick()
@@ -94,6 +112,19 @@ define(['general_view', 'cardSelect_view', 'data', 'require'], function(general,
                 mainController.changeState("cardControl");
             }
         });
+        
+        cardSelect.turnLeftClick(function()
+        {
+            console.log("left");
+            cardSelect.turnLeft();
+        });
+        
+        cardSelect.turnLeftRight(function()
+        {
+            cardSelect.turnRight();
+        });
+        
+        applyFilters();
     }
     
     function countCards(card, array)

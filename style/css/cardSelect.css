@@ -11,7 +11,7 @@ body, html{
     background-color: red;
 }
 
-#left_button
+#turnLeft_button
 {
     width: 100px;
     height: 100%;
@@ -22,7 +22,7 @@ body, html{
     top: 0px;
     left: 0px;   
 }
-#right_button
+#turnRight_button
 {
     width: 100px;
     height: 100%;
@@ -88,14 +88,54 @@ body, html{
 .card_img
 {
     pointer-events: all;
-    width: 100px;
-    height: 100px;
-    margin-top: 50px;
-    margin-bottom: 50px;
-    margin-left: 25px;
-    margin-right: 25px;
+    width: 150px;
+    height: 200px;
+    /*margin-top: 50px;*/
+    /*margin-bottom: 50px;*/
+    /*margin-left: 25px;*/
+    /*margin-right: 25px;*/
     
     background-size:contain;
     background-repeat:no-repeat;
     background-position:center;    
+}
+
+#filtersArea
+{
+    position: absolute;
+    bottom: 50px;
+    left: 40px;
+}
+
+.mana_cost
+{
+    float: left;
+    display: block;
+    margin-right: 20px;
+    background-image: url("../imgs/general/mana.png");
+}
+#cost_plus
+{
+    float: left;
+    display: block;
+}
+
+.selectorTab
+{
+    width: 50px;
+    height: 30px;
+    border-left: 1px solid black;
+    border-top: 1px solid black;
+    border-right: 1px solid black;
+    background-color: aquamarine;
+    
+    float: left;
+    position: relative;
+    top:50px;
+    
+}
+#classSelector_container
+{
+    position: absolute;
+    float: left;
 }
