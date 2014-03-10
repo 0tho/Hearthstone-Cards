@@ -22,8 +22,11 @@
 }
 .class_img:hover
 {
-    width: 263px;
-    height: 205px;
+    -webkit-transform: scale(1.03);
+    -moz-transform: scale(1.03);
+    -ms-transform: scale(1.03);
+    -o-transform: scale(1.03);
+    transform: scale(1.03);
     cursor: pointer;
 }
 .Warrior_img
