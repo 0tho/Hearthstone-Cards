@@ -1,7 +1,7 @@
 define(['general_view', 'cardSelect_view', 'data', 'require'], function(general, cardSelect, data, require)
 {        
     var deckDone = false;
-    var classFilter = true;
+    var classFilter = false;
     //-1 = all mana costs
     var manaFilter = -1;
     var textFilter = "";
@@ -26,6 +26,7 @@ define(['general_view', 'cardSelect_view', 'data', 'require'], function(general,
     
         cardSelect.cardsClick(function()
         {
+            
             var card = $(this);
             var id = card.data('id');
             
@@ -45,9 +46,9 @@ define(['general_view', 'cardSelect_view', 'data', 'require'], function(general,
             {
                 //Is this card already on deck
                 var count = countCards(cardObj, mainController.selectedCards);
-                console.log(count);
+                
                 var cardIndex = mainController.findCardByName(cardObj, mainController.selectedCards);
-                console.log(mainController.selectedCards, cardIndex);
+                
                 var refIndex;
                 if(cardIndex === 0)
                 {
@@ -94,7 +95,7 @@ define(['general_view', 'cardSelect_view', 'data', 'require'], function(general,
             {
                 cardSelect.removeThumbnail(card);
             }
-            console.log("count", count);
+            
             
         }
       
@@ -115,7 +116,7 @@ define(['general_view', 'cardSelect_view', 'data', 'require'], function(general,
         
         cardSelect.turnLeftClick(function()
         {
-            console.log("left");
+            
             cardSelect.turnLeft();
         });
         
@@ -123,6 +124,42 @@ define(['general_view', 'cardSelect_view', 'data', 'require'], function(general,
         {
             cardSelect.turnRight();
         });
+        
+        cardSelect.anyClassFilterClick(function()
+        {
+            if(classFilter)
+            {
+                classFilter = false;
+                applyFilters();
+            }
+        });
+        
+        cardSelect.selectedClassFilterClick(function()
+        {
+            if(!classFilter)
+            {
+                classFilter = true;
+                applyFilters();
+            }
+        });
+        
+        cardSelect.changeTextFilter(function(e)
+        {            
+            textFilter = $(this).val();
+            applyFilters();
+            
+            
+        });
+        
+        cardSelect.manaCostAllFilterClick(function(){manaFilter =-1; applyFilters();});
+        cardSelect.manaCost0FilterClick(function(){manaFilter =0; applyFilters();});
+        cardSelect.manaCost1FilterClick(function(){manaFilter =1; applyFilters();});
+        cardSelect.manaCost2FilterClick(function(){manaFilter =2; applyFilters();});
+        cardSelect.manaCost3FilterClick(function(){manaFilter =3; applyFilters();});
+        cardSelect.manaCost4FilterClick(function(){manaFilter =4; applyFilters();});
+        cardSelect.manaCost5FilterClick(function(){manaFilter =5; applyFilters();});
+        cardSelect.manaCost6FilterClick(function(){manaFilter =6; applyFilters();});
+        cardSelect.manaCost7FilterClick(function(){manaFilter =7; applyFilters();});
         
         applyFilters();
     }

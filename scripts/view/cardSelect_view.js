@@ -32,25 +32,25 @@ define(['jquery', 'text!../html/cardSelect.html', 'text!../html/cardLayout.html'
     
     function insertThumbnailIntoHTML(card, refIndex, refCard)
     {           
+        
         var newCardThumbnailContainer = $(cardThumbnailLayout);
         var index;
         var cardContainer;
         if(refIndex === -1)
         {
-            console.log("insert", "first");
+            
             $('#selectedCards').prepend(newCardThumbnailContainer);
             index = 0;
             cardContainer = $($('.cardThumbnailContainer')[index]);
         }else if(refIndex >= 0)
         {
-            console.log("insert", "after");
-            console.log(newCardThumbnailContainer);
+            
             $('.cardThumbnailContainer[data-name="'+refCard.name+'"]').after(newCardThumbnailContainer);
            
            cardContainer = $('.cardThumbnailContainer[data-name="'+refCard.name+'"] + .cardThumbnailContainer');
         }else
         {
-            console.log("insert", "last");
+            
             $('#selectedCards').append(newCardThumbnailContainer);  
             index = $('.cardThumbnailContainer').length-1;  
             cardContainer = $($('.cardThumbnailContainer')[index]);            
@@ -58,7 +58,7 @@ define(['jquery', 'text!../html/cardSelect.html', 'text!../html/cardLayout.html'
         
         
         
-        console.log(card);
+        
         cardContainer.attr('data-name', card.name);
        
         $('.cardThumbnail_mana', cardContainer).text(card.mana);
@@ -74,7 +74,7 @@ define(['jquery', 'text!../html/cardSelect.html', 'text!../html/cardLayout.html'
     
     function updateCardQuantity(card, quantity)
     {
-        console.log($('.cardThumbnail_quantity', $('[data-name="'+card.name+'"]')[0]).text());
+       
         $('.cardThumbnail_quantity', $('[data-name="'+card.name+'"]')[0]).text(quantity);
     }
     
@@ -111,7 +111,7 @@ define(['jquery', 'text!../html/cardSelect.html', 'text!../html/cardLayout.html'
         },
         turnLeft: function(limit)
         {
-            console.log("left");
+            
             if(pageNumber > 0)
             {
                 var top = parseInt($('#cardsArea').css('top'));
@@ -125,20 +125,110 @@ define(['jquery', 'text!../html/cardSelect.html', 'text!../html/cardLayout.html'
             var numberOfVisibleCards = $(".card_container:visible").length;
             if(pageNumber < Math.ceil(numberOfVisibleCards/cardsPerPage)-1)
             {
-                console.log(top);
+               
                 $('#cardsArea').css('top', top - turnPageY +"px");
                 pageNumber++;
             }
         },
+        changeTextFilter: function(_function)
+        {
+            console.log("yaha");
+            $('#text_filter').keyup(_function);    
+        },
         aplyFilters: function (class_selector, mana_selector, text_selector, rarity_selector)
         {
+            var i = 0;
+            var cards = require('data').hearth_cards;
+            
+            text_selector = text_selector.toLowerCase();
+            
+            console.log("selector", class_selector, mana_selector, text_selector, rarity_selector);            
+            
             pageNumber = 0;
             $('#cardsArea').css('top', "0px");
                 
             $('.card_container').show();
-            console.log(class_selector);
+         
             $('.card_img[data-class!="'+class_selector+'"]').parent().hide();
-        },         
+            if(mana_selector !== -1)
+            {
+                if(mana_selector === 7)
+                {
+                    $('.card_img[data-mana="0"]').parent().hide();
+                    $('.card_img[data-mana="1"]').parent().hide();
+                    $('.card_img[data-mana="2"]').parent().hide();
+                    $('.card_img[data-mana="3"]').parent().hide();
+                    $('.card_img[data-mana="4"]').parent().hide();
+                    $('.card_img[data-mana="5"]').parent().hide();
+                    $('.card_img[data-mana="6"]').parent().hide();                    
+                }
+                else
+                {
+                    $('.card_img[data-mana!="'+mana_selector+'"]').parent().hide();
+
+                }
+            }
+            
+            var cardsVisible = $('.card_img:visible');
+            for(i=0; i<cardsVisible.length; i++)
+            {
+                var show = true;
+                var race = false;
+                var descr = false;
+                var name = false;
+                
+                var domCard = $(cardsVisible[i]);
+                var cardId = domCard.data('id');
+                var card = cards[cardId];                
+                
+                if(card.race !== "None")
+                {
+                    if(card.race.toLowerCase().indexOf(text_selector) !== -1)
+                    {
+                        race = true;
+                    }
+                }
+                if(card.descr !== null)
+                {
+                    if(card.descr.toLowerCase().indexOf(text_selector) !== -1)
+                    {
+                        descr = true;
+                    }
+                }
+                
+                if(card.name.toLowerCase().indexOf(text_selector) !== -1)
+                {
+                    name = true;
+                }
+               
+                if(!(race || descr || name))
+                {  
+                    domCard.parent().hide();
+                }
+            }
+            
+        },
+        
+        anyClassFilterClick: function(_function)
+        {
+            $('#anyClass_tab').click(_function);
+        },   
+                
+        selectedClassFilterClick: function(_function)
+        {
+            $('#selectedClass_tab').click(_function);
+        },
+                
+        manaCostAllFilterClick: function(_function){$('#cost_all').click(_function);},
+        manaCost0FilterClick: function(_function){$('#cost_0').click(_function);},
+        manaCost1FilterClick: function(_function){$('#cost_1').click(_function);},
+        manaCost2FilterClick: function(_function){$('#cost_2').click(_function);},
+        manaCost3FilterClick: function(_function){$('#cost_3').click(_function);},
+        manaCost4FilterClick: function(_function){$('#cost_4').click(_function);},
+        manaCost5FilterClick: function(_function){$('#cost_5').click(_function);},
+        manaCost6FilterClick: function(_function){$('#cost_6').click(_function);},
+        manaCost7FilterClick: function(_function){$('#cost_7').click(_function);},
+        
         addThumbnail: insertThumbnailIntoHTML,
         removeThumbnail: removeThumbnailFromHTML,
         updateCardQuantity: updateCardQuantity,

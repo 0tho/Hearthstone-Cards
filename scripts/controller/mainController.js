@@ -4,7 +4,7 @@ define(['general_view', 'classes_controller', 'cardSelect_controller', 'cardCont
     var programState = "classes";
     
     var selectedCards = [];
-    var selectedClass = "blaaa";
+    var selectedClass = "Any";
     
     var size = [1024+26, 768+69]; 
     general.ready(function()
@@ -41,8 +41,8 @@ define(['general_view', 'classes_controller', 'cardSelect_controller', 'cardCont
         //cardSelect - Back
         if(oldState === "cardSelect" && newState === "classes")
         {
-            selectedClass = "sdasd";
-            //selectedCards = [];
+            selectedClass = "Any";
+            selectedCards = [];
             general.reset();
             classes.init();
         }
@@ -67,9 +67,9 @@ define(['general_view', 'classes_controller', 'cardSelect_controller', 'cardCont
         if(selectedCards.length < 30)
         {
             selectedCards.push(card);
-            console.log("before sort", selectedCards);
+            
             selectedCards.sort(orderByManaName);
-            console.log("after sort", selectedCards);
+            
             return true;
         }
         else
