@@ -1,14 +1,15 @@
-body, html{
-    height: 100%;
+.cards_bg {
+    background-image: url('../imgs/cards/cardsBackground.png');
 }
+
 #leftCol
 {
     width: 635px;
-    height: 100%;
+    left: 100px;
     float: left;
+    height: 100%;
     display: block;
-    
-    background-color: red;
+    background-color: transparent;
 }
 
 #turnLeft_button
@@ -57,16 +58,11 @@ body, html{
 
 #rightCol
 {
-    width: 190px;
     height: 100%;
-    float: left;
+    margin-left: 735px;
     display: block;
-    
-    
-    background-color: green;
-   
+    border: 3px solid green;
     overflow-y: scroll;
-
 }
 
 .card_thumbail
@@ -97,27 +93,49 @@ body, html{
     
     background-size:contain;
     background-repeat:no-repeat;
-    background-position:center;    
+    background-position:center;   
 }
 
 #filtersArea
 {
-    position: absolute;
-    bottom: 50px;
+    top: 80px;
     left: 40px;
+    overflow: auto;
 }
 
 .mana_cost
 {
-    float: left;
-    display: block;
-    margin-right: 20px;
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    margin-left: -5px;
     background-image: url("../imgs/general/mana.png");
+    background-size: contain;
+    cursor: pointer;
+    text-align: center;
 }
+
+.mana_cost:first-child {
+    margin-left: 0;
+    background-image: none;
+}
+
 #cost_plus
 {
-    float: left;
-    display: block;
+    background-image: none;
+    display: none;
+}
+
+#searchBar {
+    color: black;
+}
+
+textarea#text_filter {
+    resize: none;
+    padding: 0;
+    margin: 0;
+    border: none;
 }
 
 .selectorTab
@@ -128,14 +146,12 @@ body, html{
     border-top: 1px solid black;
     border-right: 1px solid black;
     background-color: aquamarine;
-    
     float: left;
-    position: relative;
-    top:50px;
     
 }
+
 #classSelector_container
 {
-    position: absolute;
-    float: left;
+    overflow: auto;
+    top: 80px;
 }
