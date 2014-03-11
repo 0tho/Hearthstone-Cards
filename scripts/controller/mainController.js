@@ -50,6 +50,7 @@ define(['general_view', 'classes_controller', 'cardSelect_controller', 'cardCont
         //cardSelect - Done
         if(oldState === "cardSelect" && newState === "cardControl")
         {
+            general.reset();
             
         }
         
