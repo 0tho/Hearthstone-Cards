@@ -13,17 +13,19 @@
     src: url("../fonts/Belwe_Bd_BT.ttf");
 }
 
-*{
-    margin: 0px;
+*{    
     font-family: "Belwe Bd BT";
     color: white;
     text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
     
+    margin: 0;
+    padding: 0;
     
     -webkit-user-select: none; /* Chrome/Safari */        
     -moz-user-select: none; /* Firefox */
     -ms-user-select: none; /* IE10+ */
-
+    -khtml-user-select: none;
+    
     /* Rules below not implemented in browsers yet */
     -o-user-select: none;
     user-select: none;
@@ -32,6 +34,8 @@
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
+    
+    cursor: default;
 }
 
 body, html
