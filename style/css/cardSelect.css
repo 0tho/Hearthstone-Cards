@@ -98,7 +98,6 @@
 #filtersArea
 {
     top: 80px;
-    left: 40px;
     overflow: auto;
 }
 
@@ -128,13 +127,18 @@
 
 #searchBar {
     color: black;
+    left: 50px;
 }
 
 textarea#text_filter {
     resize: none;
-    padding: 0;
+    width: 150px;
+    height: 30px;
+    line-height: 30px;
+    padding: 0 0 0 10px;
     margin: 0;
     border: none;
+    background: transparent;
 }
 
 .selectorTab
