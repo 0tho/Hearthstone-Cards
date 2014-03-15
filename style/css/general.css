@@ -16,7 +16,8 @@
 *{    
     font-family: "Belwe Bd BT";
     color: white;
-    text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+    font-size: 10px;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
     
     margin: 0;
     padding: 0;
@@ -42,8 +43,17 @@ body, html
 {
    overflow: hidden;
    background: #181208;
+
    color: #fff;
    height: 100%;
+
+   padding: 0;
+   margin: 0;
+}
+
+div {
+    position: relative;
+
 }
 
 
@@ -51,8 +61,17 @@ body, html
     clear: both;
 }
 
+
 .card_thumbail
 {
     width: 241px;
     height: 27px;
+
+.wrapper {
+    width: 1024px;
+    height: 640px;
+    margin: 0 auto;
+    overflow: auto;
+    background-size: contain;
+
 }
