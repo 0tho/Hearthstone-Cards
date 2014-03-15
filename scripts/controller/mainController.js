@@ -34,7 +34,7 @@ define(['general_view', 'classes_controller', 'cardSelect_controller', 'cardCont
         if(oldState === "classes" && newState === "cardSelect")
         {   
             selectedClass = arg;
-            
+            console.log("selected", selectedCards);
             general.reset();
             cardSelect.init();           
         }
@@ -42,8 +42,11 @@ define(['general_view', 'classes_controller', 'cardSelect_controller', 'cardCont
         //cardSelect - Back
         if(oldState === "cardSelect" && newState === "classes")
         {
+            console.log("selected", selectedCards);
             selectedClass = "Any";
             selectedCards = [];
+            console.log("selected", selectedCards);
+            
             general.reset();
             classes.init();
         }

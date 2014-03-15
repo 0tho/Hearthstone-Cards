@@ -22,6 +22,8 @@ define(['general_view', 'cardSelect_view', 'data', 'require'], function(general,
         general.body.append(cardSelect.html);
         cardSelect.init(thumbnailsClick); 
         
+        
+        
     //resetFilters
         classFilter = false;
         //-1 = all mana costs
