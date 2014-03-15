@@ -4,6 +4,12 @@ define(['jquery', 'text!../html/cardSelect.html', 'text!../html/cardLayout.html'
     var pageNumber = 0;
     var cardsPerPage = 8;
     
+    
+    function init(_function)
+    {
+        insertCardsDivsIntoHTML();
+        insertAllThumbnailsIntoHTML(_function);
+    }
     function insertCardsDivsIntoHTML()
     {
         var cards = data.hearth_cards;
@@ -24,10 +30,45 @@ define(['jquery', 'text!../html/cardSelect.html', 'text!../html/cardLayout.html'
             newCard.attr("data-race", card.race);
             newCard.attr("data-rarity", card.rarity);
             newCard.attr("data-class", card.class);
-            newCard.css('background-image', 'url("./style/imgs/cards/'+card.image+'.png")');           
+            newCard.css('background-image', 'url("./style/imgs/cards/'+card.image+'.png")');  
         }
         
         
+    }
+    
+    function insertAllThumbnailsIntoHTML(_function)
+    {
+        var cards = require('mainController').selectedCards;
+        
+        
+        
+        for (i=0;i<cards.length;i++)
+        {
+            var card = cards[i];
+            var cardDom = $('.cardThumbnailContainer[data-name="'+card.name+'"]');
+            if(cardDom.length === 0)
+            {
+                var cardContainer = $(cardThumbnailLayout);
+
+                cardContainer.attr('data-name', card.name);
+
+                $('.cardThumbnail_mana', cardContainer).text(card.mana);
+                $('.cardThumbnail_img', cardContainer).text(card.img);
+                $('.cardThumbnail_name', cardContainer).text(card.name);
+                $('.cardThumbnail_quantity', cardContainer).text(1);
+
+                $('#selectedCards').append(cardContainer);
+
+               
+            }else
+            {
+                var quantity = require('cardSelect_controller').countCards({name: card.name}, cards);
+                
+                $('.cardThumbnail_quantity', cardDom).text(quantity);
+            }
+        }
+        
+        $('.cardThumbnailContainer').click(_function);
     }
     
     function insertThumbnailIntoHTML(card, refIndex, refCard)
@@ -233,6 +274,6 @@ define(['jquery', 'text!../html/cardSelect.html', 'text!../html/cardLayout.html'
         removeThumbnail: removeThumbnailFromHTML,
         updateCardQuantity: updateCardQuantity,
         
-        init: insertCardsDivsIntoHTML
+        init: init
     };
 });

@@ -20,8 +20,15 @@ define(['general_view', 'cardSelect_view', 'data', 'require'], function(general,
     function insertDivsIntoHTML()
     {    
         general.body.append(cardSelect.html);
-        cardSelect.init();      
-    
+        cardSelect.init(thumbnailsClick); 
+        
+    //resetFilters
+        classFilter = false;
+        //-1 = all mana costs
+        manaFilter = -1;
+        textFilter = "";
+        rarityFilter = "";
+
         var cards = data.hearth_cards;
     
         cardSelect.cardsClick(function()
@@ -181,6 +188,8 @@ define(['general_view', 'cardSelect_view', 'data', 'require'], function(general,
     }
     
     return {
-        init: insertDivsIntoHTML
+        init: insertDivsIntoHTML,
+        countCards: countCards
+        
     };
 });

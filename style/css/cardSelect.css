@@ -1,6 +1,4 @@
-body, html{
-    height: 100%;
-}
+
 #leftCol
 {
     width: 635px;
@@ -69,11 +67,7 @@ body, html{
 
 }
 
-.card_thumbail
-{
-    width: 241px;
-    height: 27px;
-}
+
 
 /**/
 

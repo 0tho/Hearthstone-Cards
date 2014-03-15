@@ -43,8 +43,16 @@ body, html
    overflow: hidden;
    background: #181208;
    color: #fff;
+   height: 100%;
 }
+
 
 .clear {
     clear: both;
+}
+
+.card_thumbail
+{
+    width: 241px;
+    height: 27px;
 }

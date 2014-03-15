@@ -4,7 +4,7 @@ define(['general_view', 'classes_controller', 'cardSelect_controller', 'cardCont
     var programState = "classes";
     
     var selectedCards = [];
-    var selectedClass = "Any";
+    var selectedClass = "Any";   
     
     var size = [1024+26, 768+69]; 
     general.ready(function()
@@ -13,7 +13,8 @@ define(['general_view', 'classes_controller', 'cardSelect_controller', 'cardCont
         general.resize(youShallNotResize);
         //cardSelect.init(); 
         //Change after tests
-        classes.init();        
+        classes.init(); 
+        //cardControl.init();
     });
     
     
@@ -51,13 +52,17 @@ define(['general_view', 'classes_controller', 'cardSelect_controller', 'cardCont
         if(oldState === "cardSelect" && newState === "cardControl")
         {
             general.reset();
+            console.log(selectedCards);
+            cardControl.init(selectedCards);
             
         }
         
         //cardControl - Back
         if(oldState === "cardControl" && newState === "cardSelect")
         {
-            
+            general.reset();
+            cardSelect.init();     
+            resetUseOfCars();
         }
         
         
@@ -67,7 +72,21 @@ define(['general_view', 'classes_controller', 'cardSelect_controller', 'cardCont
     {
         if(selectedCards.length < 30)
         {
-            selectedCards.push(card);
+            var novaCarta = {};
+            novaCarta.name = card.name;
+            novaCarta.rarity = card.rarity;
+            novaCarta.type = card.type;
+            novaCarta.race = card.race;
+            novaCarta.class = card.class;
+            novaCarta.mana = card.mana;
+            novaCarta.attack = card.attack;
+            novaCarta.health = card.health;
+            novaCarta.descr = card.descr;
+            novaCarta.image = card.image;
+            novaCarta.used = false;
+            
+            selectedCards.push(novaCarta);
+            
             
             selectedCards.sort(orderByManaName);
             
@@ -135,12 +154,57 @@ define(['general_view', 'classes_controller', 'cardSelect_controller', 'cardCont
         }
     }
     
+    function useCard(card)
+    {
+        var array = selectedCards;
+        var i = 0;
+        
+        for(i=0;i<array.length;i++)
+        {
+            var cardB = array[i];
+            if(card.name === cardB.name && cardB.used === false)
+            {
+                break;
+            }
+        }
+        
+        if(i === array.length)
+        {
+            return false;
+        }
+        
+        console.log(selectedCards, i);
+        selectedCards[i].used = true;
+        console.log(selectedCards, i);
+        
+        if(i !== selectedCards.length -1 && card.name === selectedCards[i+1].name)
+        {           
+            return "decrement";
+        }else if(i !== false)
+        {
+            return "turnOff";
+        }else if(i === false)
+        {
+            return "bug";
+        }
+    }
+    
+    function resetUseOfCars()
+    {
+        for(i=0; i< selectedCards.length; i++)
+           {
+               selectedCards[i].used = false;
+           }
+    }
+    
     return {
         changeState: changeState,
         selectCard: selectCard,
         removeCard: removeCard,
         selectedCards: selectedCards,
         findCardByName: findCardByName,
+        useCard: useCard,
+        resetUseOfCars: resetUseOfCars,
         selectedClass: function()
         {            
             return selectedClass;
