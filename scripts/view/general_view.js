@@ -12,6 +12,9 @@ define(['jquery'], function($) {
       {
         $('body').empty();         
       },
-      body: $('body')
+      append: function()
+      {
+
+      }
    };
 });
