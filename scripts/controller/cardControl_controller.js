@@ -39,31 +39,50 @@ define(['general_view', 'cardControl_view'], function(general, cardControl)
        
         cardControl.init(_cards);
        
-        cardControl.cardsThumbnailClick(function()
+        cardControl.cardsThumbnailClick(function(event)
         {
+            console.log("clicou", event)
             var thumbnail = $(this);
             var cardName = thumbnail.data('name');
             var card = {name: cardName};
             
             console.log(countCards(card, cards));
             var mainController = require('mainController');
-            var changeState = mainController.useCard(card);
-            
-            
-            
-            var value = countCards(card, cards);
-            
-            console.log(changeState, value);
-            if(changeState === "turnOff")
+            if(event.which === 1)
+            {                
+                var changeState = mainController.useCard(card);               
+                
+                var value = countCards(card, cards);
+                
+                console.log(changeState, value);
+                if(changeState === "turnOff")
+                {
+                    cardControl.turnCardOff(cardName);
+                }else if(changeState === "decrement")
+                {
+                    cardControl.setQuantity(cardName, value);
+                }
+                
+                cardControl.updateCardCounter(countAllUnusedCards(cards));
+                console.log(this);
+            }else if(event.which === 3)
             {
-                cardControl.turnCardOff(cardName);
-            }else if(changeState === "decrement")
-            {
-                cardControl.setQuantity(cardName, value);
+                var changeState = mainController.unuseCard(card);               
+                
+                var value = countCards(card, cards);
+                
+                console.log(changeState, value);
+                if(changeState === "turnOn")
+                {
+                    cardControl.turnCardOn(cardName);
+                }else if(changeState === "increment")
+                {
+                    cardControl.setQuantity(cardName, value);
+                }
+                
+                cardControl.updateCardCounter(countAllUnusedCards(cards));
+                console.log(this);
             }
-            
-            cardControl.updateCardCounter(countAllUnusedCards(cards));
-            console.log(this);
             
         });
         

@@ -11,7 +11,22 @@ define(['general_view', 'classes_controller', 'cardSelect_controller', 'cardCont
         //cardSelect.init(); 
         //Change after tests
         classes.init(); 
+        general.contextMenu;
         //cardControl.init();
+
+
+        //Prevent context menu
+        if (document.addEventListener) {
+            document.addEventListener('contextmenu', function(e) {
+                
+                e.preventDefault();
+            }, false);
+        } else {
+            document.attachEvent('oncontextmenu', function() {
+                
+                window.event.returnValue = false;
+            });
+        }
     });   
     
     function changeState(newState, arg)
@@ -150,7 +165,7 @@ define(['general_view', 'classes_controller', 'cardSelect_controller', 'cardCont
     function useCard(card)
     {
         var array = selectedCards;
-        var i = 0;
+        var i;
         
         for(i=0;i<array.length;i++)
         {
@@ -181,6 +196,41 @@ define(['general_view', 'classes_controller', 'cardSelect_controller', 'cardCont
             return "bug";
         }
     }
+
+    function unuseCard(card)
+    {
+        var array = selectedCards;
+        var i;
+        
+        for(i=array.length-1;i>=0;i--)
+        {
+            var cardB = array[i];
+            if(card.name === cardB.name && cardB.used === true)
+            {
+                break;
+            }
+        } 
+
+        if(i === -1)
+        {
+            return false;
+        }      
+        
+        console.log(selectedCards, i);
+        selectedCards[i].used = false;
+        console.log(selectedCards, i);
+        
+        if(i === array.length-1 || card.name !== selectedCards[i+1].name)
+        {           
+            return "turnOn";
+        }else if(i !== -1)
+        {
+            return "increment";
+        }else if(i === -1)
+        {
+            return "bug";
+        }
+    }
     
     function resetUseOfCars()
     {
@@ -197,6 +247,7 @@ define(['general_view', 'classes_controller', 'cardSelect_controller', 'cardCont
         selectedCards: selectedCards,
         findCardByName: findCardByName,
         useCard: useCard,
+        unuseCard: unuseCard,
         resetUseOfCars: resetUseOfCars,
         selectedClass: function()
         {            

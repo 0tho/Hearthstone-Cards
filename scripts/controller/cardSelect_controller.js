@@ -1,6 +1,6 @@
 define(['general_view', 'cardSelect_view', 'data', 'require'], function(general, cardSelect, data, require)
 {        
-    var deckDone = false;
+    var deckDone = true;
     var classFilter = false;
     //-1 = all mana costs
     var manaFilter = -1;

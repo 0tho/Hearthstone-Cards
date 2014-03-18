@@ -93,7 +93,7 @@ define(['jquery', 'text!../html/cardControl.html', 'text!../html/cardThumbnailLa
         init: init,
         
         cardsThumbnailClick: function(_function){
-            $('.cardThumbnailContainer').click(_function);
+            $('.cardThumbnailContainer').mousedown(_function);
         },
         backButton: function(_function){
             $('#cardControl_back').click(_function);
