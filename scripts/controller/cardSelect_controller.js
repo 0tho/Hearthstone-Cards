@@ -1,6 +1,6 @@
 define(['general_view', 'cardSelect_view', 'data', 'require'], function(general, cardSelect, data, require)
 {        
-    var deckDone = true;
+    var deckDone = false;
     var classFilter = false;
     //-1 = all mana costs
     var manaFilter = -1;
@@ -76,12 +76,17 @@ define(['general_view', 'cardSelect_view', 'data', 'require'], function(general,
                     cardSelect.addThumbnail(cardObj, refIndex, refCardObj);
                     cardSelect.thumbnailsUnbind();
                     cardSelect.thumbnailsClick(thumbnailsClick);
-                }               
+                } 
+                
+                if(count === 30)
+                {
+                    deckDone = true;
+                }else
+                {
+                    deckDone = false;
+                }
             }
-            else
-            {
-                deckDone = true;
-            }
+            
             
             
         });
@@ -161,15 +166,15 @@ define(['general_view', 'cardSelect_view', 'data', 'require'], function(general,
             
         });
         
-        cardSelect.manaCostAllFilterClick(function(){manaFilter =-1; applyFilters();});
-        cardSelect.manaCost0FilterClick(function(){manaFilter =0; applyFilters();});
-        cardSelect.manaCost1FilterClick(function(){manaFilter =1; applyFilters();});
-        cardSelect.manaCost2FilterClick(function(){manaFilter =2; applyFilters();});
-        cardSelect.manaCost3FilterClick(function(){manaFilter =3; applyFilters();});
-        cardSelect.manaCost4FilterClick(function(){manaFilter =4; applyFilters();});
-        cardSelect.manaCost5FilterClick(function(){manaFilter =5; applyFilters();});
-        cardSelect.manaCost6FilterClick(function(){manaFilter =6; applyFilters();});
-        cardSelect.manaCost7FilterClick(function(){manaFilter =7; applyFilters();});
+        cardSelect.manaCostAllFilterClick(function(){manaFilter =-1; applyFilters(); cardSelect.toggleManaShineClass(manaFilter);});
+        cardSelect.manaCost0FilterClick(function(){manaFilter =0; applyFilters(); cardSelect.toggleManaShineClass(manaFilter);});
+        cardSelect.manaCost1FilterClick(function(){manaFilter =1; applyFilters(); cardSelect.toggleManaShineClass(manaFilter);});
+        cardSelect.manaCost2FilterClick(function(){manaFilter =2; applyFilters(); cardSelect.toggleManaShineClass(manaFilter);});
+        cardSelect.manaCost3FilterClick(function(){manaFilter =3; applyFilters(); cardSelect.toggleManaShineClass(manaFilter);});
+        cardSelect.manaCost4FilterClick(function(){manaFilter =4; applyFilters(); cardSelect.toggleManaShineClass(manaFilter);});
+        cardSelect.manaCost5FilterClick(function(){manaFilter =5; applyFilters(); cardSelect.toggleManaShineClass(manaFilter);});
+        cardSelect.manaCost6FilterClick(function(){manaFilter =6; applyFilters(); cardSelect.toggleManaShineClass(manaFilter);});
+        cardSelect.manaCost7FilterClick(function(){manaFilter =7; applyFilters(); cardSelect.toggleManaShineClass(manaFilter);});
         
         applyFilters();
     }

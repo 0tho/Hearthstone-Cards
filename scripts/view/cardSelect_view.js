@@ -119,6 +119,12 @@ define(['jquery', 'text!../html/cardSelect.html', 'text!../html/cardLayout.html'
         $('.cardThumbnail_quantity', $('[data-name="'+card.name+'"]')[0]).text(quantity);
     }
     
+    function toggleManaShineClass(value)
+    {
+        $('.mana_cost').removeClass('manaActive');
+        $('#cost_'+value).addClass('manaActive');
+    }
+    
     return {
         html: html,       
        
@@ -269,6 +275,7 @@ define(['jquery', 'text!../html/cardSelect.html', 'text!../html/cardLayout.html'
         manaCost5FilterClick: function(_function){$('#cost_5').click(_function);},
         manaCost6FilterClick: function(_function){$('#cost_6').click(_function);},
         manaCost7FilterClick: function(_function){$('#cost_7').click(_function);},
+        toggleManaShineClass: toggleManaShineClass,
         
         addThumbnail: insertThumbnailIntoHTML,
         removeThumbnail: removeThumbnailFromHTML,

@@ -41,7 +41,7 @@ define(['general_view', 'cardControl_view'], function(general, cardControl)
        
         cardControl.cardsThumbnailClick(function(event)
         {
-            console.log("clicou", event)
+            console.log("clicou", event);
             var thumbnail = $(this);
             var cardName = thumbnail.data('name');
             var card = {name: cardName};
