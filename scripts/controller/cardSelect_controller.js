@@ -116,7 +116,7 @@ define(['general_view', 'cardSelect_view', 'data', 'require'], function(general,
         
         cardSelect.doneClick(function()
         {            
-            console.log("done", deckDone);
+            console.log("done", deckDone, require('mainController').selectedCards.length);
             if(deckDone)
             {
                 var mainController = require('mainController');
