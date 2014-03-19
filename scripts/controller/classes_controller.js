@@ -1,72 +1,19 @@
-define(['general_view', 'classes_view', 'require'], function(general, classes, require)
+define(['general_view', 'classes_view', 'router'], function(general, classes, router)
 {        
-   
-   function insertDivsIntoHTML()
-   {
-       general.append(classes.html);
-       classes.init();
-       
-       
-       classes.warriorClick(function()
-       {
-           var mainController = require('mainController');
-           mainController.changeState("cardSelect", "Warrior");
-       });
-       
-       classes.shamanClick(function()
-       {
-           var mainController = require('mainController');
-           mainController.changeState("cardSelect", "Shaman");
-       });
-       
-       classes.rogueClick(function()
-       {
-           var mainController = require('mainController');
-           mainController.changeState("cardSelect", "Rogue");
-       });
-       
-       classes.paladinClick(function()
-       {
-           var mainController = require('mainController');
-           mainController.changeState("cardSelect", "Paladin");
-       });
-       
-       classes.hunterClick(function()
-       {
-           var mainController = require('mainController');
-           mainController.changeState("cardSelect", "Hunter");
-       });
-       
-       classes.druidClick(function()
-       {
-           var mainController = require('mainController');
-           mainController.changeState("cardSelect", "Druid");
-       });
-       
-       classes.warlockClick(function()
-       {
-           var mainController = require('mainController');
-           mainController.changeState("cardSelect", "Warlock");
-       });
-       
-       classes.mageClick(function()
-       {
-           var mainController = require('mainController');
-           mainController.changeState("cardSelect", "Mage");
-       });
-       
-       classes.priestClick(function()
-       {
-           var mainController = require('mainController');
-           mainController.changeState("cardSelect", "Priest");
-       });
-       
-      
-   }
-   
-   
-    
-   return {
-       init: insertDivsIntoHTML
-   };
+    //The init function appends the html into our browser and then adds all interactions
+    function init()
+    {
+        general.append(classes.html);
+        classes.init(data.hearth_classes);
+        classes.classesClick(function()
+        {
+            console.log($(this).data('class'));
+
+            router.changeState('cardSelect', $(this).data('class'));
+        });
+    }
+
+    return {
+        init: init
+    };
 });
