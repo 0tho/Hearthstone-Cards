@@ -1,36 +1,37 @@
-define(['general_view', 'cardSelect_view', 'data', 'deck'], function(general, cardSelect, data, deck)
-{   
-    var classFilter = false;
+define(['general_view', 'cardSelect_view', 'data', 'deck', 'router'], function(general, cardSelect, data, deck, router)
+{       
     //-1 = all mana costs
     var manaFilter = -1;
     var textFilter = "";
     var rarityFilter = "";
+    var selectedClass = "";
+    var isClassFilterON = false;
+
+    var cards;
     
     function applyFilters()
-    {
-        var mainController = require('mainController');  
-        
-        var class_selected = mainController.selectedClass();       
-        
-        var class_selector = (classFilter) ? class_selected : "Any";
-        cardSelect.aplyFilters(class_selector, manaFilter, textFilter, rarityFilter);
+    {        
+        var classFilter = (isClassFilterON) ? selectedClass : "Any";
+        cardSelect.aplyFilters(classFilter, manaFilter, textFilter, rarityFilter);
     }
     
-    function insertDivsIntoHTML()
+    function init(selectedClass)
     {    
+        this.selectedClass = selectedClass;
+
         general.append(cardSelect.html);
         cardSelect.init(thumbnailsClick); 
         
         
         
     //resetFilters
-        classFilter = false;
+        isClassFilterON = false;
         //-1 = all mana costs
         manaFilter = -1;
         textFilter = "";
         rarityFilter = "";
 
-        var cards = data.hearth_cards;
+        cards = data.hearth_cards;
     
         cardSelect.cardsClick(function()
         {
@@ -179,7 +180,7 @@ define(['general_view', 'cardSelect_view', 'data', 'deck'], function(general, ca
     }   
     
     return {
-        init: insertDivsIntoHTML,
+        init: init,
         countCards: countCards
         
     };
