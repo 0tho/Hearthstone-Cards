@@ -78,7 +78,7 @@ define(['general_view', 'cardSelect_view', 'data', 'require'], function(general,
                     cardSelect.thumbnailsClick(thumbnailsClick);
                 } 
                 
-                if(count === 30)
+                if(mainController.selectedCards.length === 30)
                 {
                     deckDone = true;
                 }else
