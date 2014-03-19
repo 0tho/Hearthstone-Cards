@@ -19,7 +19,7 @@ define(['general_view', 'cardSelect_view', 'data', 'require'], function(general,
     
     function insertDivsIntoHTML()
     {    
-        general.body.append(cardSelect.html);
+        general.append(cardSelect.html);
         cardSelect.init(thumbnailsClick); 
         
         

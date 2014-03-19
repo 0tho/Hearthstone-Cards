@@ -1,4 +1,6 @@
 define({
+	minimumNumberOfCards: 30,
+	maximumNumberOfCards: 30,
     hearth_classes: [
         {
             "name": "Garrosh Hellscream",

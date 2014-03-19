@@ -3,7 +3,7 @@ define(['general_view', 'classes_view', 'require'], function(general, classes, r
    
    function insertDivsIntoHTML()
    {
-       general.body.append(classes.html);
+       general.append(classes.html);
        classes.init();
        
        
