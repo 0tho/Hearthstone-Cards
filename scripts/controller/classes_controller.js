@@ -1,5 +1,7 @@
 define(['general_view', 'classes_view', 'router'], function(general, classes, router)
 {        
+    var selectedClass;
+
     //The init function appends the html into our browser and then adds all interactions
     function init()
     {
@@ -8,8 +10,11 @@ define(['general_view', 'classes_view', 'router'], function(general, classes, ro
         classes.classesClick(function()
         {
             console.log($(this).data('class'));
-
-            router.changeState('cardSelect', $(this).data('class'));
+            selectedClass = $(this).data('class');            
+        });
+        classes.selectClick(function()
+        {
+            router.changeState('cardSelect', selectedClass);
         });
     }
 
