@@ -64,8 +64,10 @@ define([], function()
 		var i;
 		var j;
 
+		console.log(state, lastProgamState, programState, routes);
+
 		lastProgamState = programState;
-		programState = lastProgamState;
+		programState = state;
 
 
 		for(i=0; i<routes.length; i++)
@@ -94,9 +96,8 @@ define([], function()
 		return AB || BA;
 	}
 
-	function registerRoute(stateA, stateB, _function)
-	{
-		var route = new Route(stateA, stateB, _function);
+	function registerRoute(route)
+	{		
 		if(isRouteValid(route))
 		{
 			routes.push(route);
@@ -126,6 +127,7 @@ define([], function()
 	return {
 		registerState: registerState,
 		registerRoutes: registerRoutes,
-		onChangeState: onChangeState
+		onChangeState: onChangeState,
+		changeState: changeState
 	};
 });
