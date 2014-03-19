@@ -27,54 +27,8 @@ define(['general_view', 'classes_controller', 'cardSelect_controller', 'cardCont
                 window.event.returnValue = false;
             });
         }
-    });   
-    
-    function changeState(newState, arg)
-    {
-        var oldState = programState;
-        programState = newState;    
-        
-        
-        //classes - Choose a class
-        if(oldState === "classes" && newState === "cardSelect")
-        {   
-            selectedClass = arg;
-            console.log("selected", selectedCards);
-            general.reset();
-            cardSelect.init();           
-        }
-        
-        //cardSelect - Back
-        if(oldState === "cardSelect" && newState === "classes")
-        {
-            console.log("selected", selectedCards);
-            selectedClass = "Any";
-            selectedCards = [];
-            console.log("selected", selectedCards);
-            
-            general.reset();
-            classes.init();
-        }
-        
-        //cardSelect - Done
-        if(oldState === "cardSelect" && newState === "cardControl")
-        {
-            general.reset();
-            console.log(selectedCards);
-            cardControl.init(selectedCards);
-            
-        }
-        
-        //cardControl - Back
-        if(oldState === "cardControl" && newState === "cardSelect")
-        {
-            general.reset();
-            cardSelect.init();     
-            resetUseOfCars();
-        }
-        
-        
-    }
+    });     
+   
     
     function selectCard(card)
     {

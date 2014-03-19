@@ -1,39 +1,6 @@
 define(['general_view', 'cardControl_view'], function(general, cardControl)
-{        
-    
-    var cards = [];
-    
-    function countCards(card)
-    {
-        var count = 0;
-        var i = 0;
-        for(i=0; i< cards.length;i++)
-        {
-            if(card.name === cards[i].name && !cards[i].used)
-            {
-                count++;
-            }
-        }
-        
-        return count;
-    }
-    
-    function countAllUnusedCards(array)
-    {
-        var count = 0;
-        var i = 0;
-        for(i=0; i< array.length;i++)
-        {
-            if(!array[i].used)
-            {
-                count++;
-            }
-        }
-        
-        return count;
-    }
-    
-    function init(_cards)
+{    
+    function init()
     {
         cards = _cards;
        

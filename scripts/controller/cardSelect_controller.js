@@ -1,6 +1,5 @@
-define(['general_view', 'cardSelect_view', 'data', 'require'], function(general, cardSelect, data, require)
-{        
-    var deckDone = false;
+define(['general_view', 'cardSelect_view', 'data', 'deck'], function(general, cardSelect, data, deck)
+{   
     var classFilter = false;
     //-1 = all mana costs
     var manaFilter = -1;
@@ -177,22 +176,7 @@ define(['general_view', 'cardSelect_view', 'data', 'require'], function(general,
         cardSelect.manaCost7FilterClick(function(){manaFilter =7; applyFilters(); cardSelect.toggleManaShineClass(manaFilter);});
         
         applyFilters();
-    }
-    
-    function countCards(card, array)
-    {
-        var count = 0;
-        var i = 0;
-        for(i=0; i< array.length;i++)
-        {
-            if(card.name === array[i].name)
-            {
-                count++;
-            }
-        }
-        
-        return count;
-    }
+    }   
     
     return {
         init: insertDivsIntoHTML,

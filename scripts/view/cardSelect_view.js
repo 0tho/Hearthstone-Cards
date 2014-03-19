@@ -1,21 +1,28 @@
-define(['jquery', 'text!../html/cardSelect.html', 'text!../html/cardLayout.html', 'text!../html/cardThumbnailLayout.html', 'data'], function($, html, cardLayout, cardThumbnailLayout, data)
+define(['jquery', 'text!../html/cardSelect.html', 'text!../html/cardLayout.html', 'text!../html/cardThumbnailLayout.html'], function($, html, cardLayout, cardThumbnailLayout)
 {    
     var turnPageY = 400;
     var pageNumber = 0;
     var cardsPerPage = 8;
+
+    var cardsData;
     
     
-    function init(_function)
+    function init(cardsData, initialCards)
     {
-        insertCardsDivsIntoHTML();
-        insertAllThumbnailsIntoHTML(_function);
-    }
-    function insertCardsDivsIntoHTML()
-    {
-        var cards = data.hearth_cards;
-        for(i=0;i<cards.length;i++)
+        this.cardsData = cardsData;
+
+        insertCardsIntoHTML();
+
+        if(initialCards)
         {
-            var card = cards[i];
+            insertInitialThumbnailsIntoHTML(_function);
+        }
+    }
+    function insertCardsIntoHTML()
+    {        
+        for(i=0;i<cardsData.length;i++)
+        {
+            var card = cardsData[i];
             
             var newContainer = $(cardLayout);
             
@@ -36,15 +43,11 @@ define(['jquery', 'text!../html/cardSelect.html', 'text!../html/cardLayout.html'
         
     }
     
-    function insertAllThumbnailsIntoHTML(_function)
+    function insertInitialThumbnailsIntoHTML(_function)
     {
-        var cards = require('mainController').selectedCards;
-        
-        
-        
-        for (i=0;i<cards.length;i++)
+        for (i=0;i<initialCards.length;i++)
         {
-            var card = cards[i];
+            var card = initialCards[i];
             var cardDom = $('.cardThumbnailContainer[data-name="'+card.name+'"]');
             if(cardDom.length === 0)
             {
