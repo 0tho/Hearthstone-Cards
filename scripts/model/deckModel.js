@@ -1,52 +1,192 @@
-define(['data'] ,function(gameData)
+define(['card'] ,function(Card)
 {
-	var deck;
-	var minimumNumberOfCards = gameData.minimumNumberOfCards;
-	var maximumNumberOfCards = gameData.maximumNumberOfCards;	
-
-	function addCard(id){
-		//return true/false
-	}
-
-	function removeCard(id){
-		//return true/false	
-	}
-
-	function numberOfCards(id){
-		//return number of same card on deck
-	}
-
-	function useCard(id){
-		//return true/false
-	}
-
-	function resetUseOfCard(id){
-		//return true/false
-	}
-
-	function resetUseOfAllCards(id){
-		//return true/false
-	}
-	
-	function remainingCardsOnDeck(id){
-		//return number of cards on deck
-	}
-
-	function findCardById(id){
-		//return index / false
-	}
-	
-	function sortCards(a,b){
-		//return -1/0/1
-	}
-
-	function isDeckValid()
+	return function deck(minimumNumberOfCards, maximumNumberOfCards)
 	{
-		//return true/false
-	}
+		var deck = [];
+		if(minimumNumberOfCards)
+		{
+			this.minimumNumberOfCards = minimumNumberOfCards;
+			if(maximumNumberOfCards)
+			{
+				this.maximumNumberOfCards = maximumNumberOfCards;
+			}
+		}	
 
-	return {
+
+		function addCard(cardData){
+			if(maximumNumberOfCards === undefined || deck.length < maximumNumberOfCards)
+			{
+				var card = new Card(cardData);
+				deck.push(card);
+				return true;
+			}else{
+				return false;
+			}
+			//return true/false
+		}
+
+		function removeCard(name){
+			var index = findCardByName(name);
+			if(index >= 0)
+			{
+				deck.splice(index, 1);
+				return true;
+			}else{
+				return false;
+			}
+			//return true/false	
+		}
+
+		function numberOfCards(name){
+			if(name)
+			{
+				var count = 0;
+				var i;
+
+				for(i=0; i<deck.length; i++)
+				{
+					if(deck[i].name === name)
+					{
+						count++;
+					}
+				}
+				return count;
+
+			}else{
+				return deck.length;
+			}
+			//return number of same card on deck or the number of card in the deck
+		}
+
+		function useCard(name){
+			var index = findNotUsedCardByName(name);
+			if(index >= 0)
+			{
+				deck[index].use()
+				return true;
+			}else{
+				return false;
+			}
+			//return true/false
+		}
+
+		function resetUseOfCard(name){
+			var index = findUsedCardByName(name);
+			if(index >=0)
+			{
+				deck[index].reset();
+				return true;
+			}else{
+				return false;
+			}
+			//return true/false
+		}
+
+		function resetUseOfAllCards(){
+			var i;
+
+			for(i=0; i<deck.length; i++)
+			{
+				deck[i].reset();
+			}			
+		}
 		
+		function remainingCardsOnDeck(){
+			var i;
+			var count = 0;
+			for(i=0; i<deck.length; i++)
+			{
+				if(!deck[i].isUsed())
+				{
+					count++;
+				}
+			}
+
+			return count;
+			//return number of cards on deck
+		}
+
+		function findCardByName(name, initialIndex){
+			if(initialIndex === undefined)
+			{
+				initialIndex = 0;
+			}
+			var i = initialIndex;
+
+			while (i<deck.length && deck[i].name === name)
+			{
+				i++;
+			}
+
+			if(i === deck.length)
+			{
+				return false;
+			}else{
+				return i;
+			}
+			//return index / false
+		}
+		function findNotUsedCardByName(name, initialIndex){
+			var index;
+			if(initialIndex === undefined)
+			{
+				initialIndex = 0;
+			}
+
+			index = findCardByName(name, initialIndex);
+			if(deck[index].isUsed())
+			{
+				return findNotUsedCardByName(name, initialIndex);
+			}else{
+				return index;
+			}
+			
+			//return index / false
+		}
+
+		function findUsedCardByName(name, initialIndex){
+			var index;
+			if(initialIndex === undefined)
+			{
+				initialIndex = 0;
+			}
+
+			index = findCardByName(name, initialIndex);
+			if(deck[index].isUsed())
+			{
+				return index;
+			}else{
+				return findUsedCardByName(name, initialIndex);
+			}
+			
+			//return index / false
+		}
+		
+		function sortCards(a,b){
+			//return -1/0/1
+		}
+
+		function isDeckValid(){
+			var valid = true;
+			if(minimumNumberOfCards)
+			{
+				if(deck.length >= minimumNumberOfCards)
+				{
+					if(maximumNumberOfCards)
+					{
+						if(deck.length > maximumNumberOfCards)
+						{
+							valid = false;
+						}
+					}
+				}else{
+					valid = false;
+				}
+			}
+
+			return valid;
+			//return true/false
+		}
 	};
 	
 });
