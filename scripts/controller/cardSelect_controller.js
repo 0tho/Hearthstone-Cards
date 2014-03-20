@@ -1,4 +1,4 @@
-define(['general_view', 'cardSelect_view', 'data', 'deck', 'router'], function(general, cardSelect, data, deck, router)
+define(['general_view', 'cardSelect_view', 'data', 'deckController', 'router'], function(general, cardSelect, data, deckController, router)
 {       
     //-1 = all mana costs
     var manaFilter = -1;
@@ -15,12 +15,12 @@ define(['general_view', 'cardSelect_view', 'data', 'deck', 'router'], function(g
         cardSelect.aplyFilters(classFilter, manaFilter, textFilter, rarityFilter);
     }
     
-    function init(selectedClass)
+    function init()
     {    
         this.selectedClass = selectedClass;
 
         general.append(cardSelect.html);
-        cardSelect.init(thumbnailsClick); 
+        cardSelect.init(data.hearth_cards, deckController.deck); 
         
         
         
@@ -180,8 +180,6 @@ define(['general_view', 'cardSelect_view', 'data', 'deck', 'router'], function(g
     }   
     
     return {
-        init: init,
-        countCards: countCards
-        
+        init: init
     };
 });

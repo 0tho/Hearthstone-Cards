@@ -7,16 +7,18 @@ define(['jquery', 'text!../html/cardSelect.html', 'text!../html/cardLayout.html'
     var cardsData;
     
     
-    function init(cardsData, initialCards)
+    function init(_cardsData, initialCards)
     {
-        this.cardsData = cardsData;
+        cardsData = _cardsData;
+
+        console.log(cardsData, _cardsData);
 
         insertCardsIntoHTML();
 
-        if(initialCards)
-        {
-            insertInitialThumbnailsIntoHTML(_function);
-        }
+        // if(initialCards !== undefined)
+        // {
+        //     insertInitialThumbnailsIntoHTML(_function);
+        // }
     }
     function insertCardsIntoHTML()
     {        
@@ -182,7 +184,7 @@ define(['jquery', 'text!../html/cardSelect.html', 'text!../html/cardLayout.html'
         },
         changeTextFilter: function(_function)
         {
-            console.log("yaha");
+            
             $('#text_filter').keyup(_function);    
         },
         aplyFilters: function (class_selector, mana_selector, text_selector, rarity_selector)
@@ -192,7 +194,7 @@ define(['jquery', 'text!../html/cardSelect.html', 'text!../html/cardLayout.html'
             
             text_selector = text_selector.toLowerCase();
             
-            console.log("selector", class_selector, mana_selector, text_selector, rarity_selector);            
+                       
             
             pageNumber = 0;
             $('#cardsArea').css('top', "0px");

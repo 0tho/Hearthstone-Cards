@@ -11,6 +11,9 @@ define([], function()
 	var routes = [];
 	//Callback functions for all state changes
 	var generalCallBacks = [];
+	//Initial function
+	var initialFunction;
+
 //Prototype objects
 	function Route(stateA, stateB, _function)
 	{
@@ -20,7 +23,7 @@ define([], function()
 	}
 //Functions
 
-	function registerState(state, isInitialState)
+	function registerState(state, isInitialState, _initialFunction)
 	{
 		if(isStateValid(state))
 		{
@@ -28,6 +31,9 @@ define([], function()
 			if(isInitialState)
 			{
 				programState = state;
+				console.log(this.initialFunction, initialFunction);
+				initialFunction = _initialFunction;
+				console.log(this.initialFunction, initialFunction);
 			}
 			//state registered
 			return true;
@@ -69,6 +75,10 @@ define([], function()
 		lastProgamState = programState;
 		programState = state;
 
+		for(i=0;i<generalCallBacks.length;i++)
+		{
+			generalCallBacks[i]();
+		}
 
 		for(i=0; i<routes.length; i++)
 		{
@@ -123,11 +133,18 @@ define([], function()
 		return valid;
 	}
 
+	function start(arg)
+	{
+		initialFunction(arg);
+	}
+
 //Module interface
 	return {
 		registerState: registerState,
 		registerRoutes: registerRoutes,
 		onChangeState: onChangeState,
-		changeState: changeState
+		changeState: changeState,
+
+		start: start
 	};
 });

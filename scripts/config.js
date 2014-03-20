@@ -18,11 +18,32 @@ require.config({
         mainController: 'controller/mainController',
         classes_controller: 'controller/classes_controller', 
         cardSelect_controller: 'controller/cardSelect_controller', 
-        cardControl_controller: 'controller/cardControl_controller'
+        cardControl_controller: 'controller/cardControl_controller',
+        localStorage: 'controller/localStorage'
     }
 });
 
-require(["mainController"]);
+require( ["jquery", "mainController"], function($, mainController) 
+{
+    $('document').ready()
+    {        
+       
+
+       //Prevent context menu
+        if (document.addEventListener) {
+            document.addEventListener('contextmenu', function(e) {
+                
+                e.preventDefault();
+            }, false);
+        } else {
+            document.attachEvent('oncontextmenu', function() {
+                
+                window.event.returnValue = false;
+            });
+        }
+    }    
+});
+
 
 
 

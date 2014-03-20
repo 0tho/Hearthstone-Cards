@@ -71,7 +71,6 @@ define(['general_view', 'cardControl_view'], function(general, cardControl)
     }
     
    return {
-        init: init,
-        countCards: countCards
+        init: init        
    };
 });

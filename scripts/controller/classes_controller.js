@@ -1,4 +1,4 @@
-define(['general_view', 'classes_view', 'router'], function(general, classes, router)
+define(['general_view', 'classes_view', 'router', 'data'], function(general, classes, router, data)
 {        
     var selectedClass;
 

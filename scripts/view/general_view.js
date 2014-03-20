@@ -2,10 +2,7 @@ define(['jquery'], function($) {
 
 
 
-    return {
-        ready: function(_function) {
-            $("document").ready(_function);
-        },
+    return {        
         reset: function() {
             $('body').empty();
         },
