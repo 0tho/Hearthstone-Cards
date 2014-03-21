@@ -187,6 +187,24 @@ define(['card'] ,function(Card)
 			return valid;
 			//return true/false
 		}
+
+		return {
+			deck: function ()
+			{
+				return deck;
+			},
+			addCard: addCard,
+			removeCard: removeCard,
+			numberOfCards: numberOfCards,
+			useCard: useCard,
+			resetUseOfCard: resetUseOfCard,
+			resetUseOfAllCards: resetUseOfAllCards,
+			remainingCardsOnDeck: remainingCardsOnDeck,
+			findCardByName: findCardByName,
+			findNotUsedCardByName: findNotUsedCardByName,
+			isDeckValid: isDeckValid,
+		};
+
 	};
 	
 });
