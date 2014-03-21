@@ -60,6 +60,7 @@ define(['card'] ,function(Card)
 
 		function useCard(name){
 			var index = findNotUsedCardByName(name);
+			console.log(deck[index]);
 			if(index >= 0)
 			{
 				deck[index].use()
@@ -91,15 +92,26 @@ define(['card'] ,function(Card)
 			}			
 		}
 		
-		function remainingCardsOnDeck(){
+		function remainingCardsOnDeck(name){
 			var i;
 			var count = 0;
-			for(i=0; i<deck.length; i++)
+			if(!name)
 			{
-				if(!deck[i].isUsed())
+				for(i=0; i<deck.length; i++)
 				{
-					count++;
-				}
+					if(!deck[i].isUsed())
+					{
+						count++;
+					}
+				}				
+			}else{
+				for(i=0; i<deck.length; i++)
+				{
+					if(!deck[i].isUsed() && deck[i].name == name)
+					{
+						count++;
+					}
+				}	
 			}
 
 			return count;
@@ -113,7 +125,7 @@ define(['card'] ,function(Card)
 			}
 			var i = initialIndex;
 
-			while (i<deck.length && deck[i].name === name)
+			while (i<deck.length && deck[i].name !== name)
 			{
 				i++;
 			}
@@ -136,7 +148,7 @@ define(['card'] ,function(Card)
 			index = findCardByName(name, initialIndex);
 			if(deck[index].isUsed())
 			{
-				return findNotUsedCardByName(name, initialIndex);
+				return findNotUsedCardByName(name, initialIndex+1);
 			}else{
 				return index;
 			}
@@ -156,7 +168,7 @@ define(['card'] ,function(Card)
 			{
 				return index;
 			}else{
-				return findUsedCardByName(name, initialIndex);
+				return findUsedCardByName(name, initialIndex+1);
 			}
 			
 			//return index / false

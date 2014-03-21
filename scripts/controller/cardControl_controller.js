@@ -1,70 +1,72 @@
-define(['general_view', 'cardControl_view'], function(general, cardControl)
+define(['general_view', 'cardControl_view', 'deckController', 'router'], function(general, cardControl, deckController, router)
 {    
+    var deck;
+
     function init()
     {
-        cards = _cards;
+        deck = deckController.deck();
        
-        cardControl.init(_cards);
+        cardControl.init(deck);
        
         cardControl.cardsThumbnailClick(function(event)
         {
-            console.log("clicou", event);
             var thumbnail = $(this);
-            var cardName = thumbnail.data('name');
-            var card = {name: cardName};
+            var name = thumbnail.data('name');
+            var card = {name: name};
             
-            console.log(countCards(card, cards));
-            var mainController = require('mainController');
+
+            
             if(event.which === 1)
             {                
-                var changeState = mainController.useCard(card);               
+                console.log("to");
+                var changeState = deck.useCard(name);               
+                console.log("state", changeState);
                 
-                var value = countCards(card, cards);
                 
-                console.log(changeState, value);
-                if(changeState === "turnOff")
+                var notUsedCard = deck.remainingCardsOnDeck(name);
+                
+
+                if(notUsedCard === 0)
                 {
-                    cardControl.turnCardOff(cardName);
-                }else if(changeState === "decrement")
+                    cardControl.turnCardOff(name);
+                }else if(notUsedCard > 0)
                 {
-                    cardControl.setQuantity(cardName, value);
+                    cardControl.setQuantity(name, notUsedCard);
                 }
                 
-                cardControl.updateCardCounter(countAllUnusedCards(cards));
-                console.log(this);
+                console.log(deck.remainingCardsOnDeck());
+                cardControl.updateCardCounter(deck.remainingCardsOnDeck());
+
             }else if(event.which === 3)
             {
-                var changeState = mainController.unuseCard(card);               
+                var changeState = deck.resetUseOfCard(name);               
                 
-                var value = countCards(card, cards);
+                var notUsedCard = deck.remainingCardsOnDeck(name);
                 
-                console.log(changeState, value);
-                if(changeState === "turnOn")
+               
+                if(notUsedCard-1 === 0)
                 {
-                    cardControl.turnCardOn(cardName);
-                }else if(changeState === "increment")
+                    cardControl.turnCardOn(name);
+                }else if(notUsedCard-1 > 0)
                 {
-                    cardControl.setQuantity(cardName, value);
+                    cardControl.setQuantity(name, notUsedCard);
                 }
                 
-                cardControl.updateCardCounter(countAllUnusedCards(cards));
-                console.log(this);
+                cardControl.updateCardCounter(deck.remainingCardsOnDeck());
+                
             }
             
         });
         
         cardControl.backButton(function()
         {
-            var mainController = require('mainController');
-            mainController.changeState("cardSelect");
+            router.changeState('cardSelect');
         });
         
         cardControl.cardNumberButton(function()
         {
-            var mainController = require('mainController');
-            mainController.resetUseOfCars();
-            cardControl.updateCardCounter(countAllUnusedCards(cards));
-            
+            deck.resetUseOfAllCards();
+            cardControl.updateCardCounter(deck.remainingCardsOnDeck());            
             cardControl.resetCards();
         });
        

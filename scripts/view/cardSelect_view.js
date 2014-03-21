@@ -11,14 +11,14 @@ define(['jquery', 'text!../html/cardSelect.html', 'text!../html/cardLayout.html'
     {
         cardsData = _cardsData;
 
-        console.log(cardsData, _cardsData);
+        
 
         insertCardsIntoHTML();
 
-        // if(initialCards !== undefined)
-        // {
-        //     insertInitialThumbnailsIntoHTML(_function);
-        // }
+        if(initialCards !== undefined)
+        {
+            insertInitialThumbnailsIntoHTML(initialCards);
+        }
     }
     function insertCardsIntoHTML()
     {        
@@ -45,8 +45,10 @@ define(['jquery', 'text!../html/cardSelect.html', 'text!../html/cardLayout.html'
         
     }
     
-    function insertInitialThumbnailsIntoHTML(_function)
+    function insertInitialThumbnailsIntoHTML(deck)
     {
+        
+        initialCards = deck.deck();
         for (i=0;i<initialCards.length;i++)
         {
             var card = initialCards[i];
@@ -67,13 +69,13 @@ define(['jquery', 'text!../html/cardSelect.html', 'text!../html/cardLayout.html'
                
             }else
             {
-                var quantity = require('cardSelect_controller').countCards({name: card.name}, cards);
+                var quantity = deck.numberOfCards(card.name);
                 
                 $('.cardThumbnail_quantity', cardDom).text(quantity);
             }
         }
         
-        $('.cardThumbnailContainer').click(_function);
+        
     }
     
     function insertThumbnailIntoHTML(card, refIndex, refCard)

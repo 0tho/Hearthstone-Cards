@@ -2,10 +2,10 @@ define(['jquery', 'text!../html/cardControl.html', 'text!../html/cardThumbnailLa
 {  
         
     
-    function init(cards)
+    function init(deck)
     {
         $('body').append(html);
-        
+        cards = deck.deck();
         
         var i =0;
         
@@ -35,7 +35,7 @@ define(['jquery', 'text!../html/cardControl.html', 'text!../html/cardThumbnailLa
                 }
             }else
             {
-                var quantity = require('cardControl_controller').countCards({name: card.name});
+                var quantity = deck.numberOfCards(card.name);
                 
                 $('.cardThumbnail_quantity', cardDom).text(quantity);
             }

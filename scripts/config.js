@@ -18,8 +18,7 @@ require.config({
         mainController: 'controller/mainController',
         classes_controller: 'controller/classes_controller', 
         cardSelect_controller: 'controller/cardSelect_controller', 
-        cardControl_controller: 'controller/cardControl_controller',
-        localStorage: 'controller/localStorage'
+        cardControl_controller: 'controller/cardControl_controller'
     }
 });
 

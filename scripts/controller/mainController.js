@@ -1,14 +1,13 @@
 define(['general_view', 'router', 'classes_controller', 'cardSelect_controller', 'cardControl_controller', 'deckController'], function(general, router, classes, cardSelect, cardControl, deckController)
 {       
-    router.registerState("classes", true, classes.init); 
-    console.log(classes); 
+    router.registerState("classes", true, classes.init);    
     router.registerState("cardSelect");  
     router.registerState("cardControl");  
 
     router.registerRoutes("classes", "cardSelect", routeClassesToCardSelect);
-    router.registerRoutes("cardSelect", "cardControl", routeClassesToCardSelect);
-    router.registerRoutes("cardControl", "cardSelect", routeClassesToCardSelect);
-    router.registerRoutes("cardSelect", "classes", routeClassesToCardSelect);
+    router.registerRoutes("cardSelect", "cardControl", routeCardSelectToCardControl);
+    router.registerRoutes("cardControl", "cardSelect", routeCardControlToCardSelect);
+    router.registerRoutes("cardSelect", "classes", routeCardSelectToClasses);
 
     router.onChangeState(function(){general.reset();});
 
@@ -16,17 +15,19 @@ define(['general_view', 'router', 'classes_controller', 'cardSelect_controller',
 
     function routeClassesToCardSelect(_class)
     {        
-        deckController.changeClass(_class);
+        deckController.changeClass(_class);       
         cardSelect.init();
     }
 
     function routeCardSelectToCardControl()
     {
+        console.log("cardControl init");
         cardControl.init();
     }
 
     function routeCardControlToCardSelect()
     {
+        console.log("cardSelect init");
         cardSelect.init();
     }
 

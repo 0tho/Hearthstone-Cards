@@ -31,9 +31,10 @@ define([], function()
 			if(isInitialState)
 			{
 				programState = state;
-				console.log(this.initialFunction, initialFunction);
+				lastProgamState = state;
+
 				initialFunction = _initialFunction;
-				console.log(this.initialFunction, initialFunction);
+				
 			}
 			//state registered
 			return true;
@@ -70,10 +71,10 @@ define([], function()
 		var i;
 		var j;
 
-		console.log(state, lastProgamState, programState, routes);
 
 		lastProgamState = programState;
 		programState = state;
+		console.log(state, lastProgamState, programState, routes, arg);
 
 		for(i=0;i<generalCallBacks.length;i++)
 		{
