@@ -13,7 +13,10 @@ define(['general_view', 'classes_view', 'router', 'data'], function(general, cla
         });
         classes.selectClick(function()
         {           
-            router.changeState('cardSelect', selectedClass);
+            if(selectedClass)
+            {
+                router.changeState('cardSelect', selectedClass);
+            }
         });
     }
 
