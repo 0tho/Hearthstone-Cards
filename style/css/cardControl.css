@@ -1,0 +1,67 @@
+#cardControl_cardsArea
+{
+    width: 300px;
+    height: 600px;
+    
+    background-color: red;
+    
+    display: block;
+}
+
+#cardControl_thumbnails
+{
+    width: 250px;
+    
+    margin-left: 25px;
+    margin-right: 25px;
+    
+    height: 480px;
+    background-color: azure;
+    
+    overflow-y: scroll;
+    
+    position: relative;
+    
+    top: 20px;
+    
+    display: block;
+}
+
+#cardControl_buttons
+{
+    width: 250px;
+    margin-left: 25px;
+    margin-right: 25px;
+    height: 70px;
+    margin-top: 40px;
+    display: block;
+    background-color: brown;
+}
+
+#cardControl_cardNumber
+{
+    width: 100px;
+    height: 70px;
+    
+    margin-right: 50px;
+    background-color: green;
+    display: inline-block;
+}
+
+#cardControl_back
+{
+    width: 100px;
+    height: 70px;
+    
+    background-color: blue;
+    display: inline-block;
+}
+
+.cardOn
+{
+    background-color: yellow;
+}
+.cardOff
+{
+    background-color: black;
+}
