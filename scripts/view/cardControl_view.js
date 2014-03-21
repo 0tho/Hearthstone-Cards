@@ -1,12 +1,12 @@
 define(['jquery', 'text!../html/cardControl.html', 'text!../html/cardThumbnailLayout.html'], function($, html, cardThumbnailLayout)
 {  
-        
+    var deck;   
     
-    function init(cards)
+    function init(_deck)
     {
         $('body').append(html);
-        
-        
+        deck = _deck;
+        cards = deck.deck();
         var i =0;
         
         for (i=0;i<cards.length;i++)
@@ -35,7 +35,7 @@ define(['jquery', 'text!../html/cardControl.html', 'text!../html/cardThumbnailLa
                 }
             }else
             {
-                var quantity = require('cardControl_controller').countCards({name: card.name});
+                var quantity = deck.numberOfCards(card.name);
                 
                 $('.cardThumbnail_quantity', cardDom).text(quantity);
             }
@@ -45,7 +45,7 @@ define(['jquery', 'text!../html/cardControl.html', 'text!../html/cardThumbnailLa
     
     function resetCards()
     {
-        var cardControl = require('cardControl_controller');
+        
         
         $('.cardThumbnailContainer').removeClass('cardOff');
         $('.cardThumbnailContainer').addClass('cardOn');
@@ -56,7 +56,8 @@ define(['jquery', 'text!../html/cardControl.html', 'text!../html/cardThumbnailLa
         {
             var cardDom = $(cards[i]);
             var name = cardDom.data('name');
-            var quantity = cardControl.countCards({name: name});
+            
+            var quantity = deck.numberOfCards(name);
             
             $('.cardThumbnail_quantity', cardDom).text(quantity);
         }

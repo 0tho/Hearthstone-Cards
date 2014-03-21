@@ -1,21 +1,30 @@
-define(['jquery', 'text!../html/cardSelect.html', 'text!../html/cardLayout.html', 'text!../html/cardThumbnailLayout.html', 'data'], function($, html, cardLayout, cardThumbnailLayout, data)
+define(['jquery', 'text!../html/cardSelect.html', 'text!../html/cardLayout.html', 'text!../html/cardThumbnailLayout.html'], function($, html, cardLayout, cardThumbnailLayout)
 {    
     var turnPageY = 400;
     var pageNumber = 0;
     var cardsPerPage = 8;
+
+    var cardsData;
     
     
-    function init(_function)
+    function init(_cardsData, initialCards)
     {
-        insertCardsDivsIntoHTML();
-        insertAllThumbnailsIntoHTML(_function);
-    }
-    function insertCardsDivsIntoHTML()
-    {
-        var cards = data.hearth_cards;
-        for(i=0;i<cards.length;i++)
+        cardsData = _cardsData;
+
+        
+
+        insertCardsIntoHTML();
+
+        if(initialCards !== undefined)
         {
-            var card = cards[i];
+            insertInitialThumbnailsIntoHTML(initialCards);
+        }
+    }
+    function insertCardsIntoHTML()
+    {        
+        for(i=0;i<cardsData.length;i++)
+        {
+            var card = cardsData[i];
             
             var newContainer = $(cardLayout);
             
@@ -36,15 +45,13 @@ define(['jquery', 'text!../html/cardSelect.html', 'text!../html/cardLayout.html'
         
     }
     
-    function insertAllThumbnailsIntoHTML(_function)
+    function insertInitialThumbnailsIntoHTML(deck)
     {
-        var cards = require('mainController').selectedCards;
         
-        
-        
-        for (i=0;i<cards.length;i++)
+        initialCards = deck.deck();
+        for (i=0;i<initialCards.length;i++)
         {
-            var card = cards[i];
+            var card = initialCards[i];
             var cardDom = $('.cardThumbnailContainer[data-name="'+card.name+'"]');
             if(cardDom.length === 0)
             {
@@ -62,13 +69,13 @@ define(['jquery', 'text!../html/cardSelect.html', 'text!../html/cardLayout.html'
                
             }else
             {
-                var quantity = require('cardSelect_controller').countCards({name: card.name}, cards);
+                var quantity = deck.numberOfCards(card.name);
                 
                 $('.cardThumbnail_quantity', cardDom).text(quantity);
             }
         }
         
-        $('.cardThumbnailContainer').click(_function);
+        
     }
     
     function insertThumbnailIntoHTML(card, refIndex, refCard)
@@ -108,15 +115,15 @@ define(['jquery', 'text!../html/cardSelect.html', 'text!../html/cardLayout.html'
         $('.cardThumbnail_quantity', cardContainer).text(1);
     }
     
-    function removeThumbnailFromHTML(card)
+    function removeThumbnailFromHTML(name)
     {        
-         $('.cardThumbnailContainer[data-name="'+card.name+'"]').remove();
+         $('.cardThumbnailContainer[data-name="'+name+'"]').remove();
     }
     
-    function updateCardQuantity(card, quantity)
+    function updateCardQuantity(name, quantity)
     {
        
-        $('.cardThumbnail_quantity', $('[data-name="'+card.name+'"]')[0]).text(quantity);
+        $('.cardThumbnail_quantity', $('[data-name="'+name+'"]')[0]).text(quantity);
     }
     
     function toggleManaShineClass(value)
@@ -179,7 +186,7 @@ define(['jquery', 'text!../html/cardSelect.html', 'text!../html/cardLayout.html'
         },
         changeTextFilter: function(_function)
         {
-            console.log("yaha");
+            
             $('#text_filter').keyup(_function);    
         },
         aplyFilters: function (class_selector, mana_selector, text_selector, rarity_selector)
@@ -189,7 +196,7 @@ define(['jquery', 'text!../html/cardSelect.html', 'text!../html/cardLayout.html'
             
             text_selector = text_selector.toLowerCase();
             
-            console.log("selector", class_selector, mana_selector, text_selector, rarity_selector);            
+                       
             
             pageNumber = 0;
             $('#cardsArea').css('top', "0px");

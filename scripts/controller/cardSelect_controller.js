@@ -1,37 +1,43 @@
-define(['general_view', 'cardSelect_view', 'data', 'require'], function(general, cardSelect, data, require)
-{        
-    var deckDone = false;
-    var classFilter = false;
+define(['general_view', 'cardSelect_view', 'data', 'deckController', 'router'], function(general, cardSelect, data, deckController, router)
+{       
     //-1 = all mana costs
     var manaFilter = -1;
     var textFilter = "";
     var rarityFilter = "";
+    var selectedClass = "";
+    var isClassFilterON = false;
+
+    var cards;
+
+    var deck;
     
     function applyFilters()
-    {
-        var mainController = require('mainController');  
+    {        
+        var classFilter = (isClassFilterON) ? selectedClass : "Any";
         
-        var class_selected = mainController.selectedClass();       
-        
-        var class_selector = (classFilter) ? class_selected : "Any";
-        cardSelect.aplyFilters(class_selector, manaFilter, textFilter, rarityFilter);
+        cardSelect.aplyFilters(classFilter, manaFilter, textFilter, rarityFilter);
     }
     
-    function insertDivsIntoHTML()
+    function init()
     {    
-        general.body.append(cardSelect.html);
-        cardSelect.init(thumbnailsClick); 
+        selectedClass = deckController.selectedClass();
+        deck = deckController.deck();
+        
+
+        general.append(cardSelect.html);
+        cardSelect.init(data.hearth_cards, deck); 
+        cardSelect.thumbnailsClick(thumbnailsClick);
         
         
         
     //resetFilters
-        classFilter = false;
+        isClassFilterON = false;
         //-1 = all mana costs
         manaFilter = -1;
         textFilter = "";
         rarityFilter = "";
 
-        var cards = data.hearth_cards;
+        cards = data.hearth_cards;
     
         cardSelect.cardsClick(function()
         {
@@ -43,20 +49,19 @@ define(['general_view', 'cardSelect_view', 'data', 'require'], function(general,
                         
             
             
-            //Add card on mainController deck var
+            //add card on deck
+
+
+            var adicionou = deck.addCard(cardObj);
+            deckController.saveDeck(deck);
             
-            var mainController = require('mainController');
             
-            var adicionou = mainController.selectCard(cardObj);
-            
-            
-            //if deck has 30 cards allow to click on done button
             if(adicionou)
             {
                 //Is this card already on deck
-                var count = countCards(cardObj, mainController.selectedCards);
+                var count = deck.numberOfCards(cardObj.name);
                 
-                var cardIndex = mainController.findCardByName(cardObj, mainController.selectedCards);
+                var cardIndex = deck.findCardByName(cardObj.name);
                 
                 var refIndex;
                 if(cardIndex === 0)
@@ -69,69 +74,55 @@ define(['general_view', 'cardSelect_view', 'data', 'require'], function(general,
                 
                 if(count>1)
                 {                    
-                    cardSelect.updateCardQuantity(cardObj, count);
+                    cardSelect.updateCardQuantity(cardObj.name, count);
                 }else
                 {
-                    var refCardObj = mainController.selectedCards[refIndex];
+                    var refCardObj = deck.deck()[refIndex];
+                    
                     cardSelect.addThumbnail(cardObj, refIndex, refCardObj);
                     cardSelect.thumbnailsUnbind();
                     cardSelect.thumbnailsClick(thumbnailsClick);
-                } 
+                }       
                 
-                if(mainController.selectedCards.length === 30)
-                {
-                    deckDone = true;
-                }else
-                {
-                    deckDone = false;
-                }
-            }
-            
+            }     
             
             
         });
         
         function thumbnailsClick()
         {
+
             var thumbnail = $(this);
-            var cardName = thumbnail.data('name');
-            var card = {name: cardName};
+            var name = thumbnail.data('name');           
             
-            var mainController = require('mainController');
-            mainController.removeCard(card);
+            deck.removeCard(name); 
+            deckController.saveDeck(deck);          
             
-            
-            var count = countCards(card, mainController.selectedCards);
+            var count = deck.numberOfCards(name);
             if(count > 0)
             {
-                cardSelect.updateCardQuantity(card, count);
+                cardSelect.updateCardQuantity(name, count);
             }else
             {
-                cardSelect.removeThumbnail(card);
-            }
-            
-            
+                cardSelect.removeThumbnail(name);
+            }           
         }
       
         cardSelect.backClick(function()
         {            
-            var mainController = require('mainController');
-            mainController.changeState("classes");
+            router.changeState('classes');
         });
         
         cardSelect.doneClick(function()
-        {            
-            console.log("done", deckDone, require('mainController').selectedCards.length);
-            if(deckDone)
+        {   
+            if(deck.isDeckValid())
             {
-                var mainController = require('mainController');
-                mainController.changeState("cardControl");
+                router.changeState('cardControl');
             }
         });
         
         cardSelect.turnLeftClick(function()
-        {
-            
+        {            
             cardSelect.turnLeft();
         });
         
@@ -142,18 +133,18 @@ define(['general_view', 'cardSelect_view', 'data', 'require'], function(general,
         
         cardSelect.anyClassFilterClick(function()
         {
-            if(classFilter)
+            if(isClassFilterON)
             {
-                classFilter = false;
+                isClassFilterON = false;
                 applyFilters();
             }
         });
         
         cardSelect.selectedClassFilterClick(function()
         {
-            if(!classFilter)
+            if(!isClassFilterON)
             {
-                classFilter = true;
+                isClassFilterON = true;
                 applyFilters();
             }
         });
@@ -177,26 +168,9 @@ define(['general_view', 'cardSelect_view', 'data', 'require'], function(general,
         cardSelect.manaCost7FilterClick(function(){manaFilter =7; applyFilters(); cardSelect.toggleManaShineClass(manaFilter);});
         
         applyFilters();
-    }
-    
-    function countCards(card, array)
-    {
-        var count = 0;
-        var i = 0;
-        for(i=0; i< array.length;i++)
-        {
-            if(card.name === array[i].name)
-            {
-                count++;
-            }
-        }
-        
-        return count;
-    }
+    }   
     
     return {
-        init: insertDivsIntoHTML,
-        countCards: countCards
-        
+        init: init
     };
 });
