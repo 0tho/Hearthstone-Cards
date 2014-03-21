@@ -58,7 +58,7 @@
 #rightCol
 {
     height: 100%;
-    margin-left: 735px;
+    margin-left: 738px;
     display: block;
     overflow-y: scroll;
     width: 190px;
@@ -157,7 +157,7 @@ textarea#text_filter {
 
 /*Right Col*/
 #selectedCards {
-    top: 61px;
+    top: 64px;
     font-size: 5px;
     height: 500px;
     width: 160px;
@@ -170,6 +170,11 @@ textarea#text_filter {
     background-image: url('../imgs/cards/cardThumbnail.png');
     background-size: 100% 100%;
     line-height: 23px;
+    -webkit-transition: all 0.3s 0.3s;
+    -moz-transition: all 0.3s 0.3s;
+    -ms-transition: all 0.3s 0.3s;
+    -o-transition: all 0.3s 0.3s;
+    transition: all 0.3s 0.3s;
 }
 
 .cardThumbnailContainer > * {
