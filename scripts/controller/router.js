@@ -74,7 +74,7 @@ define([], function()
 
 		lastProgamState = programState;
 		programState = state;
-		console.log(state, lastProgamState, programState, routes, arg);
+		
 
 		for(i=0;i<generalCallBacks.length;i++)
 		{

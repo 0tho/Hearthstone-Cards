@@ -26,6 +26,7 @@ define(['general_view', 'cardSelect_view', 'data', 'deckController', 'router'], 
 
         general.append(cardSelect.html);
         cardSelect.init(data.hearth_cards, deck); 
+        cardSelect.thumbnailsClick(thumbnailsClick);
         
         
         
@@ -73,10 +74,11 @@ define(['general_view', 'cardSelect_view', 'data', 'deckController', 'router'], 
                 
                 if(count>1)
                 {                    
-                    cardSelect.updateCardQuantity(cardObj, count);
+                    cardSelect.updateCardQuantity(cardObj.name, count);
                 }else
                 {
-                    var refCardObj = deck.deck[refIndex];
+                    var refCardObj = deck.deck()[refIndex];
+                    
                     cardSelect.addThumbnail(cardObj, refIndex, refCardObj);
                     cardSelect.thumbnailsUnbind();
                     cardSelect.thumbnailsClick(thumbnailsClick);
@@ -90,18 +92,20 @@ define(['general_view', 'cardSelect_view', 'data', 'deckController', 'router'], 
         
         function thumbnailsClick()
         {
+
             var thumbnail = $(this);
             var name = thumbnail.data('name');           
             
-            deckController.removeCard(name);           
+            deck.removeCard(name); 
+            deckController.saveDeck(deck);          
             
-            var count = deckController.numberOfCards(name);
+            var count = deck.numberOfCards(name);
             if(count > 0)
             {
-                cardSelect.updateCardQuantity(card, count);
+                cardSelect.updateCardQuantity(name, count);
             }else
             {
-                cardSelect.removeThumbnail(card);
+                cardSelect.removeThumbnail(name);
             }           
         }
       

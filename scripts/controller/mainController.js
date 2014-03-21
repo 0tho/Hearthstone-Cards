@@ -21,13 +21,13 @@ define(['general_view', 'router', 'classes_controller', 'cardSelect_controller',
 
     function routeCardSelectToCardControl()
     {
-        console.log("cardControl init");
+        
         cardControl.init();
     }
 
     function routeCardControlToCardSelect()
     {
-        console.log("cardSelect init");
+        
         cardSelect.init();
     }
 

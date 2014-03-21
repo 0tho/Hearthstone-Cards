@@ -115,15 +115,15 @@ define(['jquery', 'text!../html/cardSelect.html', 'text!../html/cardLayout.html'
         $('.cardThumbnail_quantity', cardContainer).text(1);
     }
     
-    function removeThumbnailFromHTML(card)
+    function removeThumbnailFromHTML(name)
     {        
-         $('.cardThumbnailContainer[data-name="'+card.name+'"]').remove();
+         $('.cardThumbnailContainer[data-name="'+name+'"]').remove();
     }
     
-    function updateCardQuantity(card, quantity)
+    function updateCardQuantity(name, quantity)
     {
        
-        $('.cardThumbnail_quantity', $('[data-name="'+card.name+'"]')[0]).text(quantity);
+        $('.cardThumbnail_quantity', $('[data-name="'+name+'"]')[0]).text(quantity);
     }
     
     function toggleManaShineClass(value)

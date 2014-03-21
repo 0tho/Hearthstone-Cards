@@ -18,9 +18,9 @@ define(['general_view', 'cardControl_view', 'deckController', 'router'], functio
             
             if(event.which === 1)
             {                
-                console.log("to");
+
                 var changeState = deck.useCard(name);               
-                console.log("state", changeState);
+
                 
                 
                 var notUsedCard = deck.remainingCardsOnDeck(name);
@@ -34,7 +34,7 @@ define(['general_view', 'cardControl_view', 'deckController', 'router'], functio
                     cardControl.setQuantity(name, notUsedCard);
                 }
                 
-                console.log(deck.remainingCardsOnDeck());
+                
                 cardControl.updateCardCounter(deck.remainingCardsOnDeck());
 
             }else if(event.which === 3)
