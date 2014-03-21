@@ -1,0 +1,82 @@
+.classes_bg {
+    background-image: url('../imgs/classes/classesBackground.png');
+}
+
+#classesArea {
+    width: 500px;
+    position: relative;
+    left: 155px;
+    top: 82px;
+}
+
+.class_container
+{
+    width: 153.6px;
+    height: 96px;
+    display: block;
+    float: left;
+    margin-left: -11px;
+    margin-top: 40px
+}
+
+.class_img
+{
+    width: 153.6px;
+    height: 96px;
+    background-size:contain;
+    background-repeat:no-repeat;
+    background-position:center;
+}
+
+.class_img:hover
+{
+    -webkit-filter: drop-shadow(0px 0px 30px rgba(255,255,255,1));
+    filter: url(shadow.svg#drop-shadow); /*Firefox*/
+    -ms-filter: "progid:DXImageTransform.Microsoft.Dropshadow(OffX=0, OffY=0,Color='#fff')"; /*IE 8 & 9*/
+    filter: "progid:DXImageTransform.Microsoft.Dropshadow(OffX=0, OffY=0, Color='#fff')"; /*IE 5.5 - 7*/
+    cursor: pointer;
+}
+
+.Warrior_img
+{
+    background-image: url('../imgs/classes/C0.png');
+}
+.Shaman_img
+{
+    background-image: url('../imgs/classes/C1.png');
+}
+.Rogue_img
+{
+    background-image: url('../imgs/classes/C2.png');
+}
+.Paladin_img
+{
+    background-image: url('../imgs/classes/C3.png');
+}
+.Hunter_img
+{
+    background-image: url('../imgs/classes/C4.png');
+}
+.Druid_img
+{
+    background-image: url('../imgs/classes/C5.png');
+}
+.Warlock_img
+{
+    background-image: url('../imgs/classes/C6.png');
+}
+.Mage_img
+{
+    background-image: url('../imgs/classes/C7.png');
+}
+.Priest_img
+{
+    background-image: url('../imgs/classes/C8.png');
+}
+
+#selectClass
+{
+    width: 50px;
+    height: 50px;
+    background-color: blue;
+}

@@ -1,0 +1,207 @@
+
+
+.cards_bg {
+    background-image: url('../imgs/cards/cardsBackground.png');
+}
+
+
+#leftCol
+{
+    width: 635px;
+    left: 100px;
+    float: left;
+    height: 100%;
+    display: block;
+    background-color: transparent;
+}
+
+#turnLeft_button
+{
+    width: 100px;
+    height: 100%;
+    position: absolute;
+    background-color: yellow;
+    cursor: pointer;
+    top: 0px;
+    left: 0px;   
+}
+#turnRight_button
+{
+    width: 100px;
+    height: 100%;
+    position: absolute;
+    
+    cursor: pointer;
+    top: 0px;
+    right: 0px;
+}
+
+
+#cardsArea_container
+{
+    height: 400px;
+    top:    60px;
+    position: relative;
+    overflow: hidden;
+}
+
+#cardsArea
+{
+    width: 100%;
+    height: 400px;
+    top:    20px;
+    position: relative; 
+    z-index: 1;
+    pointer-events: none;
+}
+
+#rightCol
+{
+    height: 100%;
+    margin-left: 738px;
+    display: block;
+    overflow-y: scroll;
+    width: 190px;
+}
+
+
+
+/**/
+
+.card_container
+{
+    float: left;
+    
+}
+.card_img
+{
+    pointer-events: all;
+    width: 150px;
+    height: 200px;
+    /*margin-top: 50px;*/
+    /*margin-bottom: -20px;*/
+    /*margin-left: -10px;*/
+    
+    background-size:cover;
+    background-repeat:no-repeat;
+    background-position:center;   
+}
+
+#filtersArea
+{
+    top: 136px;
+    overflow: auto;
+    clear: both;
+}
+
+#costOfMana {
+    float: left;
+    left: 20px;
+    overflow: auto;
+}
+
+.mana_cost
+{
+    display: inline-block;
+    width: 29px;
+    height: 29px;
+    line-height: 29px;
+    margin-left: -1px;
+    background-image: url("../imgs/general/mana.png");
+    background-size: contain;
+    cursor: pointer;
+    text-align: center;
+    float: left;
+}
+
+.mana_cost:first-child {
+    margin-left: 0;
+    margin-right: 15px;
+    background-image: none;
+}
+
+#searchBar {
+    float: left;
+    color: white;
+    left: 83px;
+}
+
+textarea#text_filter {
+    resize: none;
+    width: 150px;
+    height: 29px;
+    line-height: 29px;
+    padding: 0 0 0 10px;
+    margin: 0;
+    border: none;
+    background: transparent;
+}
+
+.selectorTab
+{
+    width: 50px;
+    height: 30px;
+    border-left: 1px solid black;
+    border-top: 1px solid black;
+    border-right: 1px solid black;
+    background-color: aquamarine;
+    float: left;
+    
+}
+
+#classSelector_container
+{
+    overflow: auto;
+    top: 10px;
+}
+
+/*Right Col*/
+#selectedCards {
+    top: 64px;
+    font-size: 5px;
+    height: 500px;
+    width: 160px;
+    overflow-y: scroll;
+}
+
+.cardThumbnailContainer {
+    height: 23px;
+    width: 145px;
+    background-image: url('../imgs/cards/cardThumbnail.png');
+    background-size: 100% 100%;
+    line-height: 23px;
+    -webkit-transition: all 0.3s 0.3s;
+    -moz-transition: all 0.3s 0.3s;
+    -ms-transition: all 0.3s 0.3s;
+    -o-transition: all 0.3s 0.3s;
+    transition: all 0.3s 0.3s;
+}
+
+.cardThumbnailContainer > * {
+    display: inline-block;
+}
+
+.cardThumbnail_quantity {
+    position: absolute;
+    right: 6px;
+    color: yellow;
+}
+
+.cardThumbnail_name {
+    position: absolute;
+    left: 24px;
+    width: 100px;
+    height: 23px;
+    overflow: hidden;
+}
+
+.cardThumbnail_mana {
+    position: absolute;
+    left: 5px;
+}
+
+#buttons {
+    position: absolute;
+    bottom: 2px;
+    right: 30px;
+}
