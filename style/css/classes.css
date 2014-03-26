@@ -5,8 +5,8 @@
 #classesArea {
     width: 500px;
     position: relative;
-    left: 155px;
-    top: 82px;
+    left: 154px;
+    top: 81px;
 }
 
 .class_container
@@ -15,8 +15,8 @@
     height: 96px;
     display: block;
     float: left;
-    margin-left: -11px;
-    margin-top: 40px
+    margin-left: -13px;
+    margin-top: 39px
 }
 
 .class_img
@@ -34,7 +34,6 @@
     filter: url(shadow.svg#drop-shadow); /*Firefox*/
     -ms-filter: "progid:DXImageTransform.Microsoft.Dropshadow(OffX=0, OffY=0,Color='#fff')"; /*IE 8 & 9*/
     filter: "progid:DXImageTransform.Microsoft.Dropshadow(OffX=0, OffY=0, Color='#fff')"; /*IE 5.5 - 7*/
-    cursor: pointer;
 }
 
 .Warrior_img
@@ -79,4 +78,12 @@
     width: 50px;
     height: 50px;
     background-color: blue;
+    position: absolute;
+    right: 50px;
+    bottom: 50px;
+}
+
+#selectClass .ready {
+    background: url('../imgs/classes/selectClass_ready.png');
+    background-size: contain;
 }

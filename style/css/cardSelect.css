@@ -20,20 +20,18 @@
     width: 100px;
     height: 100%;
     position: absolute;
-    background-color: yellow;
-    cursor: pointer;
     top: 0px;
     left: 0px;   
+    cursor: url('../imgs/general/arrow-left.png') ,auto;
 }
 #turnRight_button
 {
     width: 100px;
     height: 100%;
     position: absolute;
-    
-    cursor: pointer;
     top: 0px;
     right: 0px;
+    cursor: url('../imgs/general/arrow-right.png') ,auto;
 }
 
 
@@ -50,6 +48,7 @@
     width: 100%;
     height: 400px;
     top:    20px;
+    left: 40px;
     position: relative; 
     z-index: 1;
     pointer-events: none;
@@ -76,7 +75,7 @@
 .card_img
 {
     pointer-events: all;
-    width: 150px;
+    width: 130px;
     height: 200px;
     /*margin-top: 50px;*/
     /*margin-bottom: -20px;*/
@@ -109,7 +108,6 @@
     margin-left: -1px;
     background-image: url("../imgs/general/mana.png");
     background-size: contain;
-    cursor: pointer;
     text-align: center;
     float: left;
 }
@@ -137,21 +135,72 @@ textarea#text_filter {
     background: transparent;
 }
 
+.allTab {
+    background: url('../imgs/cards/tab_all.png');
+}
+
+.warriorTab
+{
+    background-image: url('../imgs/cards/tab_warrior.png');
+}
+.shamanTab
+{
+    background-image: url('../imgs/cards/tab_shaman.png');
+}
+.rogueTab
+{
+    background-image: url('../imgs/cards/tab_rogue.png');
+}
+.paladinTab
+{
+    background-image: url('../imgs/cards/tab_paladin.png');
+}
+.hunterTab
+{
+    background-image: url('../imgs/cards/tab_hunter.png');
+}
+.druidTab
+{
+    background-image: url('../imgs/cards/tab_druid.png');
+}
+.warlockTab
+{
+    background-image: url('../imgs/cards/tab_warlock.png');
+}
+.mageTab
+{
+    background-image: url('../imgs/cards/tab_mage.png');
+}
+.priestTab
+{
+    background-image: url('../imgs/cards/tab_priest.png');
+}
+
 .selectorTab
 {
-    width: 50px;
+    width: 43px;
     height: 30px;
-    border-left: 1px solid black;
-    border-top: 1px solid black;
-    border-right: 1px solid black;
-    background-color: aquamarine;
     float: left;
+    background-size: contain;
+    -webkit-transition: all .2s ease-in-out;
+    -moz-transition: all .2s ease-in-out;
+    -ms-transition: all .2s ease-in-out;
+    -o-transition: all .2s ease-in-out;
+    transition: all .2s ease-in-out;
     
 }
 
+.tabActive, .selectorTab:hover {
+    -webkit-transform: scale(1.2);
+    -moz-transform: scale(1.2);
+    -ms-transform: scale(1.2);
+    -o-transform: scale(1.2);
+    transform: scale(1.2);
+    top: -3px;
+}
+
 #classSelector_container
-{
-    overflow: auto;
+{   
     top: 10px;
 }
 
@@ -202,6 +251,16 @@ textarea#text_filter {
 
 #buttons {
     position: absolute;
-    bottom: 2px;
-    right: 30px;
+    width: 100%;
+    bottom: 12px;
+}
+
+#back_button {
+    float: left;
+    left: 25px;
+}
+
+#done_button {
+    float: right;
+    right: 36px;
 }
