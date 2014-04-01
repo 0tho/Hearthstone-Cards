@@ -60,7 +60,7 @@ define(['jquery', 'text!../html/cardSelect.html', 'text!../html/cardLayout.html'
                 cardContainer.attr('data-name', card.name);
 
                 $('.cardThumbnail_mana', cardContainer).text(card.mana);
-                $('.cardThumbnail_img', cardContainer).text(card.img);
+                $('.cardThumbnail_img', cardContainer).text(card.img).attr("src", "./style/imgs/cards/"+card.image+".png");
                 $('.cardThumbnail_name', cardContainer).text(card.name);
                 $('.cardThumbnail_quantity', cardContainer).text(1);
 
@@ -110,7 +110,7 @@ define(['jquery', 'text!../html/cardSelect.html', 'text!../html/cardLayout.html'
         cardContainer.attr('data-name', card.name);
        
         $('.cardThumbnail_mana', cardContainer).text(card.mana);
-        $('.cardThumbnail_img', cardContainer).text(card.img);
+        $('.cardThumbnail_img', cardContainer).text(card.img).attr("src", "./style/imgs/cards/"+card.image+".png");
         $('.cardThumbnail_name', cardContainer).text(card.name);
         $('.cardThumbnail_quantity', cardContainer).text(1);
     }

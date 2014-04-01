@@ -9,7 +9,9 @@ define(['general_view', 'classes_view', 'router', 'data'], function(general, cla
         classes.init(data.hearth_classes);
         classes.classesClick(function()
         {            
-            selectedClass = $(this).data('class');            
+            selectedClass = $(this).data('class');
+            $('#selectClass').addClass("ready");
+            $('#classShield').removeClass().addClass(selectedClass+"_shield");             
         });
         classes.selectClick(function()
         {           

@@ -36,6 +36,7 @@
     filter: "progid:DXImageTransform.Microsoft.Dropshadow(OffX=0, OffY=0, Color='#fff')"; /*IE 5.5 - 7*/
 }
 
+/*Small Shields*/
 .Warrior_img
 {
     background-image: url('../imgs/classes/C0.png');
@@ -73,17 +74,63 @@
     background-image: url('../imgs/classes/C8.png');
 }
 
-#selectClass
-{
-    width: 50px;
-    height: 50px;
-    background-color: blue;
+/*Shield*/
+#classShield {
+    width: 182px;
+    height: 207px;
     position: absolute;
-    right: 50px;
-    bottom: 50px;
+    right: 166px;
+    bottom: 231px;
+    background-size: contain;
 }
 
-#selectClass .ready {
+.Warrior_shield
+{
+    background-image: url('../imgs/classes/Warrior_shield.png');
+}
+.Shaman_shield
+{
+    background-image: url('../imgs/classes/Shaman_shield.png');
+}
+.Rogue_shield
+{
+    background-image: url('../imgs/classes/Rogue_shield.png');
+}
+.Paladin_shield
+{
+    background-image: url('../imgs/classes/Paladin_shield.png');
+}
+.Hunter_shield
+{
+    background-image: url('../imgs/classes/Hunter_shield.png');
+}
+.Druid_shield
+{
+    background-image: url('../imgs/classes/Druid_shield.png');
+}
+.Warlock_shield
+{
+    background-image: url('../imgs/classes/Warlock_shield.png');
+}
+.Mage_shield
+{
+    background-image: url('../imgs/classes/Mage_shield.png');
+}
+.Priest_shield
+{
+    background-image: url('../imgs/classes/Priest_shield.png');
+}
+
+#selectClass
+{
+    width: 128px;
+    height: 128px;
+    position: absolute;
+    right: 194px;
+    bottom: 22px;
+}
+
+.ready {
     background: url('../imgs/classes/selectClass_ready.png');
     background-size: contain;
 }

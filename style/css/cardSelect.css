@@ -67,6 +67,12 @@
 
 /**/
 
+#chosenClassImage {
+
+    height: 100px;
+    width: 100px;
+}
+
 .card_container
 {
     float: left;
@@ -112,6 +118,11 @@
     float: left;
 }
 
+.manaActive {
+    background: url("../imgs/general/mana_glow.png");
+    margin-top: -1px;
+}
+
 .mana_cost:first-child {
     margin-left: 0;
     margin-right: 15px;
@@ -133,45 +144,46 @@ textarea#text_filter {
     margin: 0;
     border: none;
     background: transparent;
+    outline: none;
 }
 
-.allTab {
+.all_tab {
     background: url('../imgs/cards/tab_all.png');
 }
 
-.warriorTab
+.Warrior_tab
 {
     background-image: url('../imgs/cards/tab_warrior.png');
 }
-.shamanTab
+.Shaman_tab
 {
     background-image: url('../imgs/cards/tab_shaman.png');
 }
-.rogueTab
+.Rogue_tab
 {
     background-image: url('../imgs/cards/tab_rogue.png');
 }
-.paladinTab
+.Paladin_tab
 {
     background-image: url('../imgs/cards/tab_paladin.png');
 }
-.hunterTab
+.Hunter_tab
 {
     background-image: url('../imgs/cards/tab_hunter.png');
 }
-.druidTab
+.Druid_tab
 {
     background-image: url('../imgs/cards/tab_druid.png');
 }
-.warlockTab
+.Warlock_tab
 {
     background-image: url('../imgs/cards/tab_warlock.png');
 }
-.mageTab
+.Mage_tab
 {
     background-image: url('../imgs/cards/tab_mage.png');
 }
-.priestTab
+.Priest_tab
 {
     background-image: url('../imgs/cards/tab_priest.png');
 }
@@ -182,11 +194,11 @@ textarea#text_filter {
     height: 30px;
     float: left;
     background-size: contain;
-    -webkit-transition: all .2s ease-in-out;
-    -moz-transition: all .2s ease-in-out;
-    -ms-transition: all .2s ease-in-out;
-    -o-transition: all .2s ease-in-out;
-    transition: all .2s ease-in-out;
+    -webkit-transition: all .1s ease-in-out;
+    -moz-transition: all .1s ease-in-out;
+    -ms-transition: all .1s ease-in-out;
+    -o-transition: all .1s ease-in-out;
+    transition: all .1s ease-in-out;
     
 }
 
@@ -197,6 +209,7 @@ textarea#text_filter {
     -o-transform: scale(1.2);
     transform: scale(1.2);
     top: -3px;
+    z-index: 2;
 }
 
 #classSelector_container
@@ -207,7 +220,6 @@ textarea#text_filter {
 /*Right Col*/
 #selectedCards {
     top: 64px;
-    font-size: 5px;
     height: 500px;
     width: 160px;
     overflow-y: scroll;
@@ -216,24 +228,20 @@ textarea#text_filter {
 .cardThumbnailContainer {
     height: 23px;
     width: 145px;
-    background-image: url('../imgs/cards/cardThumbnail.png');
-    background-size: 100% 100%;
     line-height: 23px;
-    -webkit-transition: all 0.3s 0.3s;
-    -moz-transition: all 0.3s 0.3s;
-    -ms-transition: all 0.3s 0.3s;
-    -o-transition: all 0.3s 0.3s;
-    transition: all 0.3s 0.3s;
+    overflow: hidden;
 }
 
 .cardThumbnailContainer > * {
     display: inline-block;
+
 }
 
 .cardThumbnail_quantity {
     position: absolute;
     right: 6px;
     color: yellow;
+    z-index: 1;
 }
 
 .cardThumbnail_name {
@@ -242,11 +250,28 @@ textarea#text_filter {
     width: 100px;
     height: 23px;
     overflow: hidden;
+    z-index: 1;
 }
 
 .cardThumbnail_mana {
     position: absolute;
     left: 5px;
+    z-index: 1;
+}
+
+.cardThumbnail_img {
+    width: 100%;
+    top: -50px;
+    left: 20px;
+    position: absolute;
+}
+
+.cardThumbnail_bg {
+    background-image: url('../imgs/cards/cardThumbnail.png');
+    background-size: 100% 100%;
+    height: 100%;
+    width: 100%;
+    position: absolute;
 }
 
 #buttons {

@@ -22,7 +22,7 @@ define(['jquery', 'text!../html/classes.html', 'text!../html/classLayout.html'],
 
         classesClick: function(_function)
         {
-            $('.class_img').click(_function);            
+            $('.class_img').click(_function);
         },
         selectClick: function(_function)
         {

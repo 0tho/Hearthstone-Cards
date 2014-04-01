@@ -20,7 +20,7 @@ define(['jquery', 'text!../html/cardControl.html', 'text!../html/cardThumbnailLa
                 cardContainer.attr('data-name', card.name);
 
                 $('.cardThumbnail_mana', cardContainer).text(card.mana);
-                $('.cardThumbnail_img', cardContainer).text(card.img);
+                $('.cardThumbnail_img', cardContainer).text(card.img).attr("src", "./style/imgs/cards/"+card.image+".png");
                 $('.cardThumbnail_name', cardContainer).text(card.name);
                 $('.cardThumbnail_quantity', cardContainer).text(1);
 
@@ -86,7 +86,7 @@ define(['jquery', 'text!../html/cardControl.html', 'text!../html/cardThumbnailLa
     
     function updateCardCounter(value)
     {        
-        $('#cardControl_cardNumber').text("reset " + value + "/30");
+        $('#cardControl_cardNumber').text(value + "/30" + " | Reset");
     }
     
     return {

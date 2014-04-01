@@ -1,69 +1,53 @@
 #cardControl_cardsArea
 {
-    width: 300px;
-    height: 600px;
-    
-    background-color: red;
-    
+    width: 376px;
+    height: 607px;
+    background: url("../imgs/control/controlBackground.png");
+    background-size: contain;
     display: block;
 }
 
 #cardControl_thumbnails
 {
-    width: 250px;
-    
-    margin-left: 25px;
-    margin-right: 25px;
-    
-    height: 480px;
-    background-color: azure;
-    
+    width: 160px;
+    height: 500px;
+    top: 64px;
+    left: 100px;
     overflow-y: scroll;
-    
-    position: relative;
-    
-    top: 20px;
-    
     display: block;
 }
 
 #cardControl_buttons
 {
-    width: 250px;
-    margin-left: 25px;
-    margin-right: 25px;
-    height: 70px;
-    margin-top: 40px;
-    display: block;
-    background-color: brown;
+    position: absolute;
+    width: 150px;
+    bottom: 13px;
+    left: 110px;
+    overflow: auto;
 }
 
 #cardControl_cardNumber
 {
-    width: 100px;
-    height: 70px;
-    
-    margin-right: 50px;
-    background-color: green;
-    display: inline-block;
+    float: left;
 }
 
 #cardControl_back
 {
-    width: 100px;
-    height: 70px;
-    
-    background-color: blue;
-    display: inline-block;
+    float: right;
+    right: 8px;
 }
 
 .cardOn
 {
-    background-color: yellow;
 }
 .cardOff
 {
-    background-color: black;
-    -ms-filter: grayscale(0.8);
-    filter: grayscale(0.8);
+  -webkit-filter: grayscale(100%);
+  -moz-filter: grayscale(100%);
+  -ms-filter: grayscale(100%);
+  -o-filter: grayscale(100%);
+  filter: grayscale(100%);
+  filter: url(grayscale.svg); /* Firefox 4+ */
+  filter: gray; /* IE 6-9 */
+  color: gray;
 }

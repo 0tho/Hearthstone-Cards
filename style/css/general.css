@@ -67,11 +67,45 @@ div {
     width: 241px;
     height: 27px;
 }
+
+#frame {
+  background: url("../imgs/general/bg_frame.png");
+  width: 1206px;
+  height: 700px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-left: -603px;
+  margin-top: -350px;
+  background-size: contain;
+}
+
 .wrapper {
     width: 1024px;
     height: 608px;
-    margin: 0 auto;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-left: -512px;
+    margin-top: -304px;
     overflow: auto;
     background-size: contain;
 
 }
+
+/* @media rule */
+/*@media (min-width: 1024px) {
+  #frame {
+    width: 1530px;
+    height: 888px;
+    margin-left: -765px;
+    margin-top: -444px;
+  }
+
+  .wrapper {
+    width: 1366px;
+    height: 820px;
+    margin-left: -683px;
+    margin-top: -410px;
+  }
+}*/

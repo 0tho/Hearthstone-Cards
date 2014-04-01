@@ -28,7 +28,10 @@ define(['general_view', 'cardSelect_view', 'data', 'deckController', 'router'], 
         cardSelect.init(data.hearth_cards, deck); 
         cardSelect.thumbnailsClick(thumbnailsClick);
         
-        
+    //add selectedClass images to tabs and divs
+    $('#selectedClass_tab').addClass(selectedClass+"_tab");
+    $('#chosenClassImage').addClass(selectedClass+"_img");
+
         
     //resetFilters
         isClassFilterON = false;
@@ -137,6 +140,8 @@ define(['general_view', 'cardSelect_view', 'data', 'deckController', 'router'], 
             {
                 isClassFilterON = false;
                 applyFilters();
+                $(this).addClass("tabActive");
+                $('#selectedClass_tab').removeClass("tabActive");
             }
         });
         
@@ -146,6 +151,8 @@ define(['general_view', 'cardSelect_view', 'data', 'deckController', 'router'], 
             {
                 isClassFilterON = true;
                 applyFilters();
+                $(this).addClass("tabActive");
+                $('#anyClass_tab').removeClass("tabActive");
             }
         });
         
