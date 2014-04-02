@@ -1,5 +1,6 @@
+//This module define a card prototype
 define([], function()
-{
+{    
 	return function Card(data)
 	{
 		var name = data.name;

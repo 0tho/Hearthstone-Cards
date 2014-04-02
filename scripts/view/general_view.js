@@ -1,7 +1,5 @@
 define(['jquery'], function($) {
-
-
-
+    
     return {        
         reset: function() {
             $('body').empty();

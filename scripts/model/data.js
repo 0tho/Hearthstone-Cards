@@ -1,3 +1,4 @@
+//This module define hearthstone data
 define({
 	minimumNumberOfCards: 30,
 	maximumNumberOfCards: 30,
