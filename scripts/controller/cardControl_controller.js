@@ -1,13 +1,19 @@
+//This module controlls card select screen interactions
 define(['general_view', 'cardControl_view', 'deckController', 'router'], function(general, cardControl, deckController, router)
 {    
+//Variables    
     var deck;
 
+//Functions
     function init()
     {
+        //Get deck current cards data
         deck = deckController.deck();
        
+        //Init cardControl view
         cardControl.init(deck);
        
+        //Add interaction to card thumbnails
         cardControl.cardsThumbnailClick(function(event)
         {
             var thumbnail = $(this);
@@ -15,7 +21,7 @@ define(['general_view', 'cardControl_view', 'deckController', 'router'], functio
             var card = {name: name};
             
 
-            
+            //If mouse left click
             if(event.which === 1)
             {                
 
@@ -37,6 +43,7 @@ define(['general_view', 'cardControl_view', 'deckController', 'router'], functio
                 
                 cardControl.updateCardCounter(deck.remainingCardsOnDeck());
 
+            //If mouse right click
             }else if(event.which === 3)
             {
                 var changeState = deck.resetUseOfCard(name);               
@@ -58,11 +65,13 @@ define(['general_view', 'cardControl_view', 'deckController', 'router'], functio
             
         });
         
+        //Back button click function
         cardControl.backButton(function()
         {
             router.changeState('cardSelect');
         });
         
+        //Reset button click function
         cardControl.cardNumberButton(function()
         {
             deck.resetUseOfAllCards();
@@ -71,7 +80,7 @@ define(['general_view', 'cardControl_view', 'deckController', 'router'], functio
         });
        
     }
-    
+//Module Interface   
    return {
         init: init        
    };

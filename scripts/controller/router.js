@@ -23,6 +23,7 @@ define([], function()
 	}
 //Functions
 
+    //Register a new program state if this is not already defined
 	function registerState(state, isInitialState, _initialFunction)
 	{
 		if(isStateValid(state))
@@ -44,6 +45,7 @@ define([], function()
 		}
 	}
 	
+    //check if state can be defined
 	function isStateValid(state)
 	{
 		var i = 0;
@@ -51,7 +53,7 @@ define([], function()
 
 		while(valid && i<programStates.length)
 		{
-			if(state == programStates[i])
+			if(state === programStates[i])
 			{
 				valid = false;
 			}
@@ -61,11 +63,13 @@ define([], function()
 		return valid;
 	}
 
+    //register callback functions to all state changes
 	function onChangeState(_function)
 	{
 		generalCallBacks.push(_function);
 	}
 
+    //change program state and call funciton relative to route made
 	function changeState(state, arg)
 	{
 		var i;
@@ -83,7 +87,7 @@ define([], function()
 
 		for(i=0; i<routes.length; i++)
 		{
-			if(routes[i].stateA == lastProgamState && routes[i].stateB == programState)
+			if(routes[i].stateA === lastProgamState && routes[i].stateB === programState)
 			{
 				routes[i]._function(arg);
 				return true;
@@ -92,7 +96,8 @@ define([], function()
 
 		return false;
 	}
-
+    
+    //register route between two states and their functions 
 	function registerRoutes(stateA, stateB, _functionAB, _functionBA)
 	{
 
@@ -107,6 +112,7 @@ define([], function()
 		return AB || BA;
 	}
 
+    //register single route between two states
 	function registerRoute(route)
 	{		
 		if(isRouteValid(route))
@@ -118,6 +124,7 @@ define([], function()
 		}
 	}
 
+    //check if route is valid
 	function isRouteValid(route)
 	{
 		var i = 0;
@@ -125,7 +132,7 @@ define([], function()
 
 		while(valid && i<routes.length)
 		{
-			if(route.stateA == routes[i].stateA && route.stateB == routes[i].stateB)
+			if(route.stateA === routes[i].stateA && route.stateB === routes[i].stateB)
 			{
 				valid = false;
 			}
@@ -134,6 +141,7 @@ define([], function()
 		return valid;
 	}
 
+    //call initial state function
 	function start(arg)
 	{
 		initialFunction(arg);

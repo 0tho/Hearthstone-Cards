@@ -1,3 +1,4 @@
+//This module define a deck prototype
 define(['card'] ,function(Card)
 {
 	return function deck(minimumNumberOfCards, maximumNumberOfCards)

@@ -9,8 +9,8 @@ define(['jquery', 'text!../html/classes.html', 'text!../html/classLayout.html'],
           
             var classImg = $($(".class_img")[i]);
 
-            classImg.addClass(classes[i].class+'_img')
-            classImg.attr("data-class", classes[i].class)
+            classImg.addClass(classes[i].class+'_img');
+            classImg.attr("data-class", classes[i].class);
             classImg.attr("id", classes[i].class);
         }
         $('#classesArea').append($('<div class="clear">'));
@@ -22,7 +22,7 @@ define(['jquery', 'text!../html/classes.html', 'text!../html/classLayout.html'],
 
         classesClick: function(_function)
         {
-            $('.class_img').click(_function);            
+            $('.class_img').click(_function);
         },
         selectClick: function(_function)
         {

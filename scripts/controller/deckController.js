@@ -1,14 +1,17 @@
 //Deck Controller manages all deck data
 define(['data', 'card', 'deck'], function(data, card, deck)
-{
+{    
+//Variables
 	var selectedClass;
 	var actualDeck;
-
+//Functions
+    //save deck on localstorage
 	function saveDeck(deck){
 		actualDeck = deck;
 		window.localStorage.setItem(selectedClass, JSON.stringify(deck.deck()));
 	}
 
+    //change class and load deck data from that class
 	function changeClass(_class)
 	{		
 		selectedClass = _class;
@@ -27,8 +30,8 @@ define(['data', 'card', 'deck'], function(data, card, deck)
 			}
 		}		
 	}
-
-
+    
+//Module Interface
 	return{
 		selectedClass: function()
 		{

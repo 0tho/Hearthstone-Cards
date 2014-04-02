@@ -1,3 +1,4 @@
+//This module define hearthstone data
 define({
 	minimumNumberOfCards: 30,
 	maximumNumberOfCards: 30,
@@ -124,7 +125,7 @@ define({
 		"mana": 1,
 		"attack": 2,
 		"health": 1,
-		"descr": "Battlecry: Give a friendly minion +2 Attack this turn.",
+		"descr": "Battlecry: Give a minion +2 Attack this turn.",
 		"image": "CS2_188"
 	}, 
 	{
@@ -652,7 +653,7 @@ define({
 		"mana": 2,
 		"attack": 0,
 		"health": 4,
-		"descr": "At the end of your turn, you have a 50% chance to draw a card.",
+		"descr": "At the start of your turn, you have a 50% chance to draw an extra card.",
 		"image": "EX1_557"
 	}, 
 	{
@@ -663,7 +664,7 @@ define({
 		"class": "Any",
 		"mana": 2,
 		"attack": 1,
-		"health": 2,
+		"health": 1,
 		"descr": "Battlecry: Draw a card.",
 		"image": "EX1_015"
 	}, 
@@ -1118,9 +1119,9 @@ define({
 		"race": "None",
 		"class": "Any",
 		"mana": 3,
-		"attack": 2,
-		"health": 2,
-		"descr": "Battlecry: Transform a minion into a 5/5 Devilsaur or a 1/1 Squirrel at random.",
+		"attack": 3,
+		"health": 3,
+		"descr": "Battlecry: Transform another random minion into a 5/5 Devilsaur or a 1/1 Squirrel.",
 		"image": "EX1_083"
 	}, 
 	{
@@ -1192,7 +1193,7 @@ define({
 		"mana": 4,
 		"attack": 4,
 		"health": 4,
-		"descr": "Battlecry: Give a minion +2 Attack.",
+		"descr": "Battlecry: Give a minion +2 Attack this turn.",
 		"image": "EX1_046"
 	}, 
 	{
@@ -1202,7 +1203,7 @@ define({
 		"race": "None",
 		"class": "Any",
 		"mana": 4,
-		"attack": 3,
+		"attack": 2,
 		"health": 3,
 		"descr": "Battlecry: Give adjacent minions +1/+1 and Taunt.",
 		"image": "EX1_093"
@@ -1597,7 +1598,7 @@ define({
 		"type": "Minion",
 		"race": "None",
 		"class": "Any",
-		"mana": 5,
+		"mana": 6,
 		"attack": 5,
 		"health": 5,
 		"descr": "Deathrattle: Take control of a random enemy minion.",
@@ -2521,7 +2522,7 @@ define({
 		"type": "Spell",
 		"race": "None",
 		"class": "Hunter",
-		"mana": 4,
+		"mana": 2,
 		"attack": 0,
 		"health": 0,
 		"descr": "For each enemy minion, summon a 1/1 Hound with Charge.",
@@ -4118,9 +4119,9 @@ define({
 		"race": "Demon",
 		"class": "Warlock",
 		"mana": 1,
-		"attack": 1,
+		"attack": 0,
 		"health": 1,
-		"descr": "Stealth. Your other minions have +1 Health.",
+		"descr": "Stealth. At the end of your turn, give another random friendly minion +1 Health.",
 		"image": "CS2_059"
 	}, 
 	{
@@ -4393,10 +4394,10 @@ define({
 		"type": "Spell",
 		"race": "None",
 		"class": "Warrior",
-		"mana": 0,
+		"mana": 3,
 		"attack": 0,
 		"health": 0,
-		"descr": "Give a friendly minion Charge.",
+		"descr": "Give a friendly minion +2 Attack and Charge.",
 		"image": "CS2_103"
 	}, 
 	{
@@ -4600,7 +4601,7 @@ define({
 		"mana": 3,
 		"attack": 2,
 		"health": 3,
-		"descr": "Your other minions have Charge.",
+		"descr": "Whenever you summon a minion with 3 or less Attack, give it Charge.",
 		"image": "EX1_084"
 	}, 
 	{

@@ -1,3 +1,4 @@
+//Configure all files paths, so inside each module the files adress are shorter
 require.config({
     baseUrl: 'scripts/',
     paths: {        
@@ -21,14 +22,14 @@ require.config({
         cardControl_controller: 'controller/cardControl_controller'
     }
 });
-
+//Init the app when everything is ready
 require( ["jquery", "mainController"], function($, mainController) 
 {
-    $('document').ready()
-    {        
-       
-
-       //Prevent context menu
+    $('document').ready(function()
+    {
+    //Init app
+        mainController.init();
+    //Prevent context menu
         if (document.addEventListener) {
             document.addEventListener('contextmenu', function(e) {
                 
@@ -40,7 +41,7 @@ require( ["jquery", "mainController"], function($, mainController)
                 window.event.returnValue = false;
             });
         }
-    }    
+    });   
 });
 
 
